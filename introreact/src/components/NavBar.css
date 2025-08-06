@@ -1,0 +1,11 @@
+.NavBar{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    a{
+        outline: none;
+        text-decoration: none;
+    }
+}
