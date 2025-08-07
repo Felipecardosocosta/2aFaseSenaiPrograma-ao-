@@ -1,0 +1,60 @@
+Sistema de Avaliação
+    Prova 01 - Teórica  Setembro    Peso 10
+    Prova 02 - Prática  Outubro     Peso 10
+    Prova 03 - Teórica  Novembro    Peso 10
+    Prova 04 - Prática  Dezembro    Peso 10
+    Atividades Avaliativas          Peso 10
+    S.A
+
+
+D.E.R. - Diagrama Entidade Relacionamento
+    Diagrama - Desenho Representação
+    Entidade - Tabela
+    Relacionamento - Interação
+É uma representação gráfica do funcionamento do Banco de Dados
+
+Modelo:
+    - Conceitual
+    - Lógico
+    - Físico
+
+Composição:
+    Retangulo - Entidade (tabela)
+        ex.: Cliente; Pessoa; Veículo;
+    Seta/Risco - Relacionamento
+        ex.: Pessoa---Veículo
+    Cardinalidade:
+        1:1 - um p/ um
+        N:1 - vários p/ um
+        1:N - um p/ vários
+        N:N - vários p/ vários
+        N = Vários
+    
+    Exemplo:
+     - CPF      Pessoa  (1) <-----> (1) CPF
+     - Ex1      Cliente (1) <---->  (N) Produto
+     - Ex2      Gerente (1) <---->  (1) Setor
+     - Ex3      Seleção (1) <---->  (N) Seleção
+
+     Na tabela todos tem ID (Chave Primaria)
+     Também tem chave extrangeira, que são as Chaves Primaria porem dentro das outras Entidades,
+     nesse caso o nome é invertido e quem ter a cardinalidade N recebe as chaves extrangerias
+
+     ID_ChavePrimaria ---> ChavePrimaria_ID
+
+
+
+     Tipos de dados mais usados:
+        Para números:
+                            - Int (10 digitos)
+                            - BigInt (20 digitos)
+                            - Decimal (nº quebrados ex.: 8,3
+                                O nº8 representa a quantidade de dígitos a ser usados
+                                e o nº3 representa onde a virgula vai ficar 12345,678)
+        Para Strings:
+                            - VarChar (da para limitar o nº de caracteres)
+                            - Text
+                            - Enum
+        Data e Horários:
+                            - Date (Na data usar o padrão do EUA YYYY/MM/Dados)
+                            - Time (hh:mm:ss)
