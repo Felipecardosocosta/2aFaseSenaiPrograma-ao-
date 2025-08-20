@@ -1,8 +1,12 @@
-function Titulo2(props) {
+function Titulo2({texto}) {
+
+
     return (
       <h2 className="titulo2-container">
-        {props.texto} {props.emoji}
-        {console.log(props)}
+
+
+        {texto && texto.map((nome,ind)=> { return <p key={ind} >{nome}</p>})}
+        
       </h2>
     )
   }
