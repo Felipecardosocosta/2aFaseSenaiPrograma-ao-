@@ -22,9 +22,6 @@ ALTER TABLE peca
 ADD FOREIGN KEY (fornecedor_id)
 REFERENCES fornecedor (id_fornecedor);
 
-ALTER TABLE peca
-DROP COLUMN viado;
-
 
 
 CREATE DATABASE instituicao_ensino;
