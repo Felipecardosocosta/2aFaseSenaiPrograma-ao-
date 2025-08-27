@@ -1,0 +1,17 @@
+.titulo {
+
+    text-align: center;
+
+    h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+}
+
+.imagem {
+    width: 50px;
+    border-radius: 5px;
+
+}

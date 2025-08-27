@@ -1,0 +1,8 @@
+.Header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100vh-85px);
+    background-color: var(--cor-6);
+    padding: 1rem;
+}
