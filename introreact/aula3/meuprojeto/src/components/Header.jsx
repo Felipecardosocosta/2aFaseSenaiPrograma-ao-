@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBar from '../components/NavBar'
+import NavBar from './NavBar'
 import './Header.css'
-import Titulo from '../components/Titulo'
+import Titulo from './Titulo'
 
 const Header = () => {
     return (

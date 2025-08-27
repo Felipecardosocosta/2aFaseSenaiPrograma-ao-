@@ -1,0 +1,13 @@
+.conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 1rem;
+    border: 1px var(--cor-5);
+    border-radius: 5px;
+    color: var(--cor-4);
+    background-color: var(--cor-1);
+    
+}

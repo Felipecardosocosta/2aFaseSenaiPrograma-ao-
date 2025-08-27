@@ -1,5 +1,6 @@
 import React from 'react'
 import './NavBar.css'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
     return (
@@ -7,7 +8,7 @@ const NavBar = () => {
 
             <li>
 
-                <a className='opcao' ><img src="./img/line-md--home.svg" alt="" />Home</a>
+                <Link to={'/'} className='opcao' ><img src="./img/line-md--home.svg" alt="" />Home</Link>
 
             </li>
 
@@ -17,7 +18,7 @@ const NavBar = () => {
             </li>
 
             <li>
-                <a className='opcao' ><img src="./img/fluent--people-queue-20-regular.svg" alt="" />Fila </a>
+                <Link to={'/Fila'} className='opcao' ><img src="./img/fluent--people-queue-20-regular.svg" alt="" />Fila </Link>
 
             </li>
 
