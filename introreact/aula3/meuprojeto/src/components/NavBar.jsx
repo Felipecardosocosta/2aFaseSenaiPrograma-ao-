@@ -1,6 +1,6 @@
 import React from 'react'
 import './NavBar.css'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const NavBar = () => {
     return (
@@ -8,7 +8,7 @@ const NavBar = () => {
 
             <li>
 
-                <Link to={'/'} className='opcao' ><img src="./img/line-md--home.svg" alt="" />Home</Link>
+                <Link to={'/'}  className='opcao'  ><img src="./img/line-md--home.svg" alt="" />Home</Link>
 
             </li>
 

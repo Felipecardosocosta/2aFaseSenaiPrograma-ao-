@@ -6,7 +6,7 @@ import Titulo from './Titulo'
 const Header = () => {
     return (
         <div className='Header'>
-            <Titulo titulo={"Farmacia"} />
+            <Titulo titulo={"Farmácia"} />
             <NavBar />
 
         </div>

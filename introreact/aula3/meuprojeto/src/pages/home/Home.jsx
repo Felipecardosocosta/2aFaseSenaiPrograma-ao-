@@ -7,13 +7,15 @@ import Card from '../../components/card/Card'
 
 function Home() {
     return (
-        < >
+        <>
 
             <Header />
             <div className='home'>
-                <Titulo titulo={"Seja bem vindo"} />
                 <Conteudo conteudo={<img className='img' src="./img/farmarcia.webp" alt="" />}> 
-                <Card numero={4} titulo={"Camiseta"} categoria={"Roupa"} img={"./img/farmarcia-camiseta.webp"} />
+                <Card titulo={'Camisa'} categoria={'Roupa'} img={"./img/farmarcia-camisetas.webp"}/>
+                <Card titulo={'Camisa'} categoria={'Roupa'} img={"./img/farmarcia-camiseta.webp"}/>
+                <Card titulo={'Camisa'} categoria={'Roupa'} img={"./img/farmarcia-camisetas.webp"}/>
+                
                 </Conteudo>
                 
             </div>

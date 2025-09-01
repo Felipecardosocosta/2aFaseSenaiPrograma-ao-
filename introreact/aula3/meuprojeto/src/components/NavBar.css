@@ -16,6 +16,13 @@
     text-decoration: none;
     color: var(--cor-2);
 }
+.opcaoIs{
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    color: black;
+    text-decoration: none;
+}
 
 
 .NavBar {

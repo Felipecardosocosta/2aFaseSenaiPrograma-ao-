@@ -6,10 +6,12 @@
     background-color: var(--cor-3);
     color: var(--cor-2);
     width: 250px;
+    min-height: 200px;
     gap: 5px;
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 0 10px var(--cor-3);
+    font-size: 12px;
 }
 .titulo{
     color: var(--cor-4);
