@@ -5,6 +5,7 @@ import pesguisa from '../../components/teste/pesguisa'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Conteudo from '../../components/Conteudo'
+import Card from '../../components/card/Card'
 
 
 function Fila() {
@@ -15,40 +16,32 @@ function Fila() {
 
     const [pokemonAchado, setPokemonAchado] = useState()
 
-    async function carregar(nome) {
+    async function abrirPokemon(nome) {
 
         const pokemonnnn = await pesguisa(nome)
-        
+
 
         setPokemonAchado(pokemonnnn)
 
         setCarregar(false)
         console.log(pokemonnnn);
-        
+
 
 
     }
 
     useEffect(() => {
 
-        async function poke(nome) {
+        async function atualizar() {
 
-            try {
-                const resposta = await fetch(url)
+            const dados = await pesguisa()
+            console.log(dados)
 
-                const tratamento = await resposta.json()
-                console.log(tratamento)
-                setPokemnon(tratamento.results)
-
-            } catch (err) {
-                console.log(err)
-                return null
-
-            }
-
+            setPokemnon(dados.results)
 
         }
-        poke()
+        atualizar()
+
 
     }, [])
 
@@ -60,38 +53,40 @@ function Fila() {
         <>
             <Header />
 
-            <div className='Fila' > <h1>
+            <div className='Fila' > <div className='cont'>
                 {!Carregar &&
                     <div className='testee' >
 
                         <Conteudo conteudo={<div>
                             <h1>{pokemonAchado.name}</h1>
-                            <img src={pokemonAchado.sprites.other.dream_world.front_default} alt="" /> 
+
+                            <img src={pokemonAchado.sprites.other.dream_world.front_default} alt="" />
+
                             <p>Tipo: {pokemonAchado.types.map((type) => type.type.name).join(', ')}</p>
 
-                            
-                            </div>} >
-                            
-                       
-                        
-                        <button onClick={()=> setCarregar(true)}>Voltar</button>
+                        </div>} >
+
+
+
+                            <button onClick={() => setCarregar(true)}>Voltar</button>
                         </Conteudo>
 
-                        
-                        
+
+
 
 
                     </div>}
                 {Carregar &&
                     pokemnon.map((poke) => {
                         return (
-
-                            <div key={poke.name} > <p> {poke.name}</p>
-                                <button onClick={() => carregar(poke.name)} >Ver Mais </button>
-                            </div>
+                            
+                            <Card key={poke.name} titulo={poke.name}>
+                                <button onClick={()=>abrirPokemon(poke.name)} >Ver Mais</button>
+                            </Card>
+                            
 
                         )
-                    })}  </h1>
+                    })}  </div>
 
 
             </div>

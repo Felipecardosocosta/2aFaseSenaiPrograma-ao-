@@ -12,9 +12,9 @@ function Home() {
             <Header />
             <div className='home'>
                 <Conteudo conteudo={<img className='img' src="./img/farmarcia.webp" alt="" />}> 
-                <Card titulo={'Camisa'} categoria={'Roupa'} img={"./img/farmarcia-camisetas.webp"}/>
-                <Card titulo={'Camisa'} categoria={'Roupa'} img={"./img/farmarcia-camiseta.webp"}/>
-                <Card titulo={'Camisa'} categoria={'Roupa'} img={"./img/farmarcia-camisetas.webp"}/>
+                <Card titulo={'Camisa'} categoria={'Categoria: Roupa'} img={"./img/farmarcia-camisetas.webp"}/>
+                <Card titulo={'Camisa'} categoria={'Categoria: Roupa'} img={"./img/farmarcia-camiseta.webp"}/>
+                <Card titulo={'Camisa'} categoria={'Categoria: Roupa'} img={"./img/farmarcia-camisetas.webp"}/>
                 
                 </Conteudo>
                 
