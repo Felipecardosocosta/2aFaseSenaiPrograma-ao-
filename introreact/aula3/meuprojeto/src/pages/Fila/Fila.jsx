@@ -10,7 +10,6 @@ import Card from '../../components/card/Card'
 
 function Fila() {
     const [pokemnon, setPokemnon] = useState([])
-    const url = 'https://pokeapi.co/api/v2/pokemon'
 
     const [Carregar, setCarregar] = useState(true)
 
@@ -20,7 +19,7 @@ function Fila() {
 
         const pokemonnnn = await pesguisa(nome)
 
-
+        
         setPokemonAchado(pokemonnnn)
 
         setCarregar(false)
@@ -35,13 +34,14 @@ function Fila() {
         async function atualizar() {
 
             const dados = await pesguisa()
-            console.log(dados)
+            
 
             setPokemnon(dados.results)
 
         }
         atualizar()
-
+        
+        return()=>  console.log("desmontou")
 
     }, [])
 
@@ -77,7 +77,7 @@ function Fila() {
 
                     </div>}
                 {Carregar &&
-                    pokemnon.map((poke) => {
+                    !!pokemnon && pokemnon.map((poke) => {
                         return (
                             
                             <Card key={poke.name} titulo={poke.name}>
