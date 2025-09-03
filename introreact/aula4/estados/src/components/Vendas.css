@@ -6,10 +6,10 @@
     align-items: center;
     border: 1px solid;
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 1.3rem;
     margin-top: 15px;
     box-shadow: 0 0 .7rem #646cffaa;
-    transition: ease-in-out 0.3s;
+    transition: ease-in-out 0.4s;
 
     button {
         width: 100px;
@@ -32,7 +32,8 @@
 }
 
 .vendas:hover{
-    box-shadow: 0 0 1rem #646cffaa;
+    box-shadow: 0 0 1.3rem #646cffaa;
     scale: 1.03;
+    border-radius: .5rem;
 
 }
