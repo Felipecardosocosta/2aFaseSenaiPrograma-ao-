@@ -1,0 +1,19 @@
+.vendas{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    padding: 1rem;
+    border-radius: .5rem;
+    margin-top: 15px;
+    box-shadow: 0 0 .7rem #646cffaa;
+    button{
+        width: 100px;
+        height: 50px;
+    }
+
+}
+
+
