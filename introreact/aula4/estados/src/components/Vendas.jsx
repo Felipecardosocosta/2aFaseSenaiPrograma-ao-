@@ -30,7 +30,7 @@ function Vendas() {
         <div className='vendas'>
             <h2>Vendas</h2>
 
-            <label htmlFor="">Preço de comprar
+            <label htmlFor="">Preço de comprar:
                 <input type="number" value={precoCompra} onChange={(e) => setPrecoCompra(e.target.value)} />
             </label>
             {!!precoVenda && <p>Valor de venda: R$ {precoVenda}</p>}
