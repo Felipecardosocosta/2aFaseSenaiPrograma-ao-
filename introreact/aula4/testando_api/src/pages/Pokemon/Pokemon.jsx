@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import pesguisarPokemons from '../../server/pesguisarPokemons'
+import './Pokemon.css'
 
 function Pokemon() {
     const { name } = useParams()
@@ -39,7 +40,7 @@ function Pokemon() {
 
     return (
         <div>
-            {!erro ? carregando ? <p>Carregando...</p> : pokemon && <p>{<img src={pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt="" />}</p> :
+            {!erro ? carregando ? <p>Carregando...</p> : pokemon && <p>{<img className='img' src={pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt="" />}</p> :
                 <p>Erro...</p>}
         </div>
     )
