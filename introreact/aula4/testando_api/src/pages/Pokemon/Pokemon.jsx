@@ -1,44 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import pesguisarPokemons from '../../db/pesguisarPokemons'
+import pesguisarPokemons from '../../server/pesguisarPokemons'
 
 function Pokemon() {
-    const {name}=useParams()
-    const[pokemon, setPokemon]=useState()
-    const [erro,setErro]= useState(false)
-    const [carregando,setCarregando] = useState(true)
+    const { name } = useParams()
+    const [pokemon, setPokemon] = useState()
+    const [erro, setErro] = useState(false)
+    const [carregando, setCarregando] = useState(true)
+
+
     
-    
 
-    useEffect(()=>{
 
-      async function  pesquisarPoke() {
+    useEffect(() => {
 
-        const pesquisa = await pesguisarPokemons(name)
+        async function pesquisarPoke() {
 
-        const dados = await pesquisa
+            const pesquisa = await pesguisarPokemons(name)
 
-        if (dados) {
-          
-          setPokemon(dados)
-  
-          console.log(dados);
-          setCarregando(false)
-          return
+            const dados = await pesquisa
+
+            if (dados) {
+
+                setPokemon(dados)
+                console.log(dados);
+                
+                console.log(dados.sprites.versions['generation-v']['black-white'].animated.front_default);
+                
+                setCarregando(false)
+                return
+            }
+            setErro(true)
+
         }
-        setErro(true)
-        
-      }
-      pesquisarPoke()
+        pesquisarPoke()
 
-    },[])
+    }, [])
 
-  return (
-    <div>
-      {!erro? carregando ?<p>Carregando...</p> :pokemon&& <p>{<img src={pokemon.sprites.other.dream_world.front_default} alt="" />}</p>:
-      <p>Erro...</p>}
-    </div>
-  )
+    return (
+        <div>
+            {!erro ? carregando ? <p>Carregando...</p> : pokemon && <p>{<img src={pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt="" />}</p> :
+                <p>Erro...</p>}
+        </div>
+    )
 }
 
 export default Pokemon
