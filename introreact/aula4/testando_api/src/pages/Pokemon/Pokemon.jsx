@@ -5,6 +5,10 @@ import pesguisarPokemons from '../../db/pesguisarPokemons'
 function Pokemon() {
     const {name}=useParams()
     const[pokemon, setPokemon]=useState()
+    const [erro,setErro]= useState(false)
+    const [carregando,setCarregando] = useState(true)
+    
+    
 
     useEffect(()=>{
 
@@ -14,8 +18,15 @@ function Pokemon() {
 
         const dados = await pesquisa
 
-        setPokemon(dados)
-
+        if (dados) {
+          
+          setPokemon(dados)
+  
+          console.log(dados);
+          setCarregando(false)
+          return
+        }
+        setErro(true)
         
       }
       pesquisarPoke()
@@ -24,7 +35,8 @@ function Pokemon() {
 
   return (
     <div>
-      
+      {!erro? carregando ?<p>Carregando...</p> :pokemon&& <p>{<img src={pokemon.sprites.other.dream_world.front_default} alt="" />}</p>:
+      <p>Erro...</p>}
     </div>
   )
 }
