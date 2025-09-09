@@ -1,0 +1,38 @@
+.cont-Pricipal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.cont-base {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    width: 100px;
+    height: 10px;
+    background-color: #a9a9a9;
+    
+}
+
+.cont-abilidade {
+    background-color: brown;
+    border-radius: 5px;
+    border: 1px solid;
+    height: 100%;
+    width: 0%;
+}
+
+.tipo{
+    text-transform: uppercase;
+
+}
+.so-para-ajuste{
+    display: flex;
+    flex-direction: row;
+    
+    justify-content: space-around;
+    font-size: 10px;
+    
+    
+}

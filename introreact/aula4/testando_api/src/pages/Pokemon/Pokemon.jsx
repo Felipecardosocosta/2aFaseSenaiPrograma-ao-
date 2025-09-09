@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import pesguisarPokemons from '../../server/pesguisarPokemons'
 import './Pokemon.css'
+import ConteinerCor from '../../components/ConteinerCor'
 
 
 function Pokemon() {
@@ -10,6 +11,7 @@ function Pokemon() {
     const [erro, setErro] = useState(false)
     const [carregando, setCarregando] = useState(true)
 
+    
 
 
     useEffect(() => {
@@ -23,7 +25,7 @@ function Pokemon() {
                 setPokemon(pesquisa)
                 setCarregando(false)
                 console.log(pesquisa.stats.map(abilidade => abilidade['base_stat']))
-                
+
                 return
             }
             setErro(true)
@@ -32,11 +34,32 @@ function Pokemon() {
 
     }, [])
 
+
+
+     if (erro) {
+        return <p>Erro...</p>
+    }
+
+    if (carregando) {
+       return <p>Carregando...</p>
+    }
+
     return (
         <div>
+            {/* <ConteinerCor tipo={'atack'} numero={50} tamanho={70}/> */}
 
-            {!erro ? carregando ? <p>Carregando...</p> : pokemon && <div><h2>{pokemon.name}</h2> {<img className='img' src={pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt="" />} <div>{pokemon.stats.map(abilidade => { return (<p>{abilidade.stat.name}: {abilidade['base_stat']}</p>) })}</div></div> :
-                <p>Erro...</p>}
+            {pokemon && <div><h2>{pokemon.name}</h2> {<img className='img' src={pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt="" />} <div>
+                
+            {pokemon.stats.map(abilidade => { 
+                
+                
+
+                return ( <ConteinerCor tipo={abilidade.stat.name} tamanho={abilidade['base_stat']} numero={abilidade['base_stat']}/>) 
+                
+    
+                
+                })}</div>
+            </div>}
         </div>
     )
 }
