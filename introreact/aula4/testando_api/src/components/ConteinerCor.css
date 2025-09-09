@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    
 }
 
 .cont-base {
@@ -25,6 +25,7 @@
 
 .tipo{
     text-transform: uppercase;
+    
 
 }
 .so-para-ajuste{
@@ -33,5 +34,7 @@
     justify-content: space-between;
     font-size: 10px;
     min-width: 130px;
+    height: 30px;
+    margin-top: 5px;
     
 }
