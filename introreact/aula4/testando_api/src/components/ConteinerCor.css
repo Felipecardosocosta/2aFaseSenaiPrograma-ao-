@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     border-radius: 5px;
-    width: 100px;
+    width: 130px;
     height: 10px;
     background-color: #a9a9a9;
     
@@ -30,9 +30,8 @@
 .so-para-ajuste{
     display: flex;
     flex-direction: row;
-    
-    justify-content: space-around;
+    justify-content: space-between;
     font-size: 10px;
-    
+    min-width: 130px;
     
 }
