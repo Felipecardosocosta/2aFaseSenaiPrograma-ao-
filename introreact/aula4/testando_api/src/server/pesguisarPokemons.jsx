@@ -2,7 +2,7 @@ import React from 'react'
 
  const  pesguisarPokemons  = async (name) => {
      try{
-        const url= "https://pokeapi.co/api/v2/pokemon"
+        const url= "https://pokeapi.co/api/v2/pokemon/"
         const pokemon = name? `${url}/${name}`: url
         const pesguisa = await fetch(pokemon)
         const dados =  await pesguisa.json()
@@ -15,9 +15,6 @@ import React from 'react'
     }
 
     
-
-
-  return 
 }
 
 export default pesguisarPokemons

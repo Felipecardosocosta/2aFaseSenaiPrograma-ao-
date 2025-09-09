@@ -15,8 +15,10 @@ function Pokemons() {
             const pesquisar = await pesguisarPokemons()
 
             if (pesquisar && pesquisar.results) {
-
-                const todospokemons = await pesquisar.results
+                
+                console.log(pesquisar);
+                
+                const todospokemons = pesquisar.results
 
                 setPokemons(todospokemons)
                 setCarregando(false)
