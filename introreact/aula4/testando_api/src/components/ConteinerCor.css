@@ -16,7 +16,7 @@
 }
 
 .cont-abilidade {
-    background-color: brown;
+    background-image: linear-gradient(to right, rgb(224, 222, 103),rgb(228, 49, 49)) ;
     border-radius: 5px;
     border: 1px solid;
     height: 100%;
