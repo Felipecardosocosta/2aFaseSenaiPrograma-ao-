@@ -1,5 +1,5 @@
 import React from 'react'
-
+// https://pokeapi.co/api/v2/pokemon/?limit=100
  const  pesguisarPokemons  = async (name) => {
      try{
         const url= "https://pokeapi.co/api/v2/pokemon/"

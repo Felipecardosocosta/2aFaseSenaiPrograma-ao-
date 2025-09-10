@@ -1,14 +1,14 @@
 import React from 'react'
 import './ConteinerCor.css'
 
-function ConteinerCor({tamanho,tipo,numero}) {
+function ConteinerCor({tamanho,tipo,numero,key}) {
 
   const definindo = {
     width: `${tamanho}%`
   }
 
   return (
-    <div className='cont-Pricipal'>
+    <div className='cont-Pricipal' key={key}>
 
       
 

@@ -24,7 +24,7 @@ function Pokemon() {
 
                 setPokemon(pesquisa)
                 setCarregando(false)
-                console.log(pesquisa.stats.map(abilidade => abilidade['base_stat']))
+                console.log(pesquisa.stats)
 
                 return
             }
