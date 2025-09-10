@@ -5,15 +5,17 @@ function Demo() {
     const[inputUsername,setInputUsername]= useState('')
 
     const[valores, mudarValores]=FormState({name:"", password:'' } )
-    useEffect(()=>{
-
-        console.log(valores);
-        
-    },[valores])
+   
 
     function logar(){
         alert(`${valores.name} ${valores.password}`)
 
+    }
+    function logar2(e) {
+        if(e.key === 'Enter'){
+            logar()
+        }
+        
     }
 
   return (
@@ -30,7 +32,8 @@ function Demo() {
         <input type= "password" 
         name='password'
         value={valores.password}
-        onChange={mudarValores}/>
+        onChange={mudarValores}
+        onKeyDown={logar2}/>
 
         <button onClick={logar} >Logar</button>
         
