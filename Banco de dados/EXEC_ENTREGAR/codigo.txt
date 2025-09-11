@@ -1,0 +1,70 @@
+CREATE DATABASE	livraria;
+
+USE livraria;
+
+CREATE TABLE cliente(
+id_cliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome_cliente VARCHAR(100),
+rg_cliente INT(9) NOT NULL UNIQUE,
+cpf_cliente BIGINT(11) NOT NULL UNIQUE,
+cep_cliente INT(8),
+rua VARCHAR(100)
+
+);
+
+CREATE TABLE autor(
+id_autor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome_autor VARCHAR(45),
+rg_cliente INT(9) NOT NULL UNIQUE
+
+);
+
+CREATE TABLE financiador(
+id_financiador INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome_financiador VARCHAR(45),
+cnpj_financiador BIGINT(14) NOT NULL UNIQUE
+
+);
+
+CREATE TABLE editora(
+id_editora INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome_fantasia VARCHAR(45),
+razao_social VARCHAR(45),
+telefone BIGINT(13),
+cep_cliente INT(8),
+rua VARCHAR(100)
+);
+
+CREATE TABLE livro(
+id_livro INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+isbn_livro BIGINT(13),
+titulo_livro VARCHAR(50),
+preco_livro DECIMAL(8,2),
+categoria VARCHAR(45),
+rua VARCHAR(100),
+editora_id INT,
+autor_id INT,
+financiador_id INT,
+FOREIGN KEY(editora_id)
+REFERENCES editora (id_editora),
+FOREIGN KEY(autor_id)
+REFERENCES autor (id_autor),
+FOREIGN KEY(financiador_id)
+REFERENCES financiador (id_financiador)
+);
+
+CREATE TABLE pedido(
+id_pedido INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+quantidade_pedido INT,
+livro_id INT,
+cliente_id INT,
+FOREIGN KEY(livro_id)
+REFERENCES livro (id_livro),
+FOREIGN KEY(cliente_id)
+REFERENCES cliente (id_cliente)
+);
+
+
+
+
+
