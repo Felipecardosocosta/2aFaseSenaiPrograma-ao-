@@ -22,13 +22,13 @@ rg_cliente INT(9) NOT NULL UNIQUE
 CREATE TABLE financiador(
 id_financiador INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nome_financiador VARCHAR(45),
-cnpj_financiador BIGINT(14) NOT NULL UNIQUE
+cnpj_financiador  BIGINT(14) NOT NULL UNIQUE
 
 );
 
 CREATE TABLE editora(
 id_editora INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-nome_fantasia VARCHAR(45),
+nome_fantasia  VARCHAR(45),
 razao_social VARCHAR(45),
 telefone BIGINT(13),
 cep_cliente INT(8),
@@ -41,7 +41,6 @@ isbn_livro BIGINT(13),
 titulo_livro VARCHAR(50),
 preco_livro DECIMAL(8,2),
 categoria VARCHAR(45),
-rua VARCHAR(100),
 editora_id INT,
 autor_id INT,
 financiador_id INT,
@@ -65,6 +64,50 @@ REFERENCES cliente (id_cliente)
 );
 
 
+INSERT INTO cliente (nome_cliente,rg_cliente,cpf_cliente,cep_cliente,rua) VALUE
+('Ana Silva', '123456789', '12345678901', '12345678', 'Rua das Flores'),
+('Bruno Lima', '987654321', '10987654321', '87654321', 'Avenida Brasil'),
+('Carla Souza', '456789123', '23456789012', '11223344', 'Rua das Palmeiras'),
+('Diego Costa', '321987654', '34567890123', '44332211', 'Travessa Central'),
+('Elisa Moraes', '159753486', '45678901234', '55667788', 'Rua dos Pinheiros');
+
+INSERT INTO financiador (cnpj_financiador, nome_financiador) VALUE
+('12345678000199', 'Banco Central'),
+('98765432000155', 'Financiadora Alfa'),
+('11223344000166', 'Instituto de Crédito'),
+('55667788000177', 'Agência Financeira'),
+('99887766000188', 'Banco Nacional');
+
+INSERT INTO autor (nome_autor, rg_cliente) VALUE
+('João Pereira', '123456789'),
+('Maria Oliveira', '987654321'),
+('Carlos Santos', '456789123'),
+('Fernanda Lima', '321987654'),
+('Paula Mendes', '159753486');
+
+
+INSERT INTO editora (nome_fantasia, razao_social, telefone, cep_cliente, rua) VALUES
+('Financiadora Alfa', 'Financiadora Alfa Ltda', '11987654321', '12345678', 'Rua das Flores'),
+('Banco Central', 'Banco Central S/A', '11234567890', '87654321', 'Avenida Brasil'),
+('Crédito Fácil', 'Crédito Fácil Comércio e Serviços', '11911223344', '11223344', 'Rua das Palmeiras'),
+('Agência Financeira', 'Agência Financeira Ltda', '11332244556', '44332211', 'Travessa Central'),
+('Banco Nacional', 'Banco Nacional S/A', '11999887766', '55667788', 'Rua dos Pinheiros');
+
+
+INSERT INTO livro (isbn_livro,titulo_livro,preco_livro,categoria,editora_id,autor_id,financiador_id) VALUES
+('9781234567897', 'Aprendendo SQL', 59.90, 'Tecnologia', 1, 1, 1),
+('9789876543210', 'Python para Iniciantes', 79.50, 'Programação', 2, 2, 2),
+('9781112223334', 'História do Brasil', 45.00, 'História', 3, 3, 3),
+('9785556667778', 'Receitas Caseiras', 39.90, 'Culinária', 4, 4, 4),
+('9789998887776', 'Guia de Viagem Europa', 69.90, 'Turismo', 5, 5, 5);
+
+
+INSERT INTO pedido (quantidade_pedido,livro_id,cliente_id) VALUES
+(2, 1, 1),
+(1, 2, 3),
+(4, 3, 2),
+(3, 4, 5),
+(1, 5, 4);
 
 
 
