@@ -110,4 +110,16 @@ INSERT INTO pedido (quantidade_pedido,livro_id,cliente_id) VALUES
 (1, 5, 4);
 
 
+SELECT * FROM cliente;
+SELECT * FROM financiador;
+SELECT * FROM autor;
 
+SELECT * FROM editora;
+SELECT * FROM livro;
+SELECT * FROM pedido;
+
+DROP TABLE cliente;
+DROP TABLE financiador;
+DROP TABLE autor;
+DROP TABLE editora;
+DROP TABLE livro;
