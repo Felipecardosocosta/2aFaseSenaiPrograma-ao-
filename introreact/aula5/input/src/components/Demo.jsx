@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import FormState from '../hooks/FormState'
+import formState from '../hooks/formState'
+import './Demo.css'
 
 function Demo() {
     const[inputUsername,setInputUsername]= useState('')
 
-    const[valores, mudarValores]=FormState({name:"", password:'' } )
+    const[valores, mudarValores]=formState({name:"", password:'' } )
    
 
     function logar(){
@@ -19,7 +20,7 @@ function Demo() {
     }
 
   return (
-    <div>
+    <div className='cont' >
         <h2>Demo</h2>
         <label htmlFor="">Username: </label>
         <input type="text" 

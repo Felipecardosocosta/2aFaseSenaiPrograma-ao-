@@ -1,0 +1,48 @@
+.cont-card{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid ;
+    border-radius: 5px;
+    padding: 1rem;
+    min-width: 200px;
+    box-shadow: 0 0 15px #747bff90;
+    transition: .8s ease-in-out;
+}
+.nome{
+    color: #646cff;
+}
+.idade{
+    align-self: flex-start;
+
+}
+.tamanho{
+    align-self: flex-start;
+}
+
+.cont-card:hover{
+    scale: 1.02;
+    box-shadow: 0 0 30px #747bff;
+    animation: girar .3s infinite;
+    
+}
+
+@keyframes girar {
+
+    0%{
+        transform: rotate(0deg);
+    }
+    30%{
+        transform: rotate(100deg);
+    }
+    50%{
+        transform: rotate(150deg);
+    }
+    80%{
+        transform: rotate(260deg)
+    }
+    100%{
+        transform: rotate(360deg)
+    }
+    
+}
