@@ -20,6 +20,7 @@ function App() {
   
   function cadastrar() {
 
+    setPessoas([inputs, ...pessoas])
     
   }
 
@@ -29,10 +30,16 @@ function App() {
     <div className='cont-cards'>
 
     {pessoas.map(pessoa=> (<Card key={pessoa.id} nome={pessoa.nome} idade={pessoa.idade} tamanho={pessoa.tamanho}/>) )}
-
+    <div className='cadastrar2'>
+    <label htmlFor=""> nome:</label>
     <input type= "text" value={inputs.nome} onChange={mudarvalor} name='nome' />
+    <label htmlFor="">idade:</label>
+    <input type= "number" value={inputs.idade} onChange={mudarvalor} name='idade' />
+    <label htmlFor="">tamanho:</label>
+    <input type= "number" value={inputs.tamanho} onChange={mudarvalor} name='tamanho' />
 
     <button onClick={cadastrar} >Cadastrar</button>
+    </div>
     </div>
     </>
   )
