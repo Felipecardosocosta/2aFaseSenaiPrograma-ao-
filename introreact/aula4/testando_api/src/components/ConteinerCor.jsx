@@ -1,7 +1,7 @@
 import React from 'react'
 import './ConteinerCor.css'
 
-function ConteinerCor({tamanho,tipo,numero}) {
+function ConteinerCor({tamanho,tipo}) {
 
   const definindo = {
     width: `${tamanho}%`
@@ -14,7 +14,7 @@ function ConteinerCor({tamanho,tipo,numero}) {
 
       <div className='so-para-ajuste'>
         <p className='tipo'>{tipo} :</p>
-        <p className='numero'>{numero}</p>
+        <p className='numero'>{tamanho}</p>
         </div>
         
         

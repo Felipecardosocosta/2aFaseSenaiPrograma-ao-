@@ -51,7 +51,7 @@ function Pokemon() {
     return (
         <div>
             <NotificationRoot>
-                <NotificationText content={"Ola mundo cruel"} />
+                <NotificationText imgTest={false} content={"Ola mundo cruel"} />
                 <NotificationButton nameAction={'Heloow'} />
             </NotificationRoot>
             {/* <ConteinerCor tipo={'atack'} numero={50} tamanho={70}/> */}
@@ -62,7 +62,7 @@ function Pokemon() {
                 
                 
 
-                return ( <ConteinerCor key={abilidade.stat.name} tipo={abilidade.stat.name} tamanho={abilidade['base_stat']} numero={abilidade['base_stat']}/>) 
+                return ( <ConteinerCor key={abilidade.stat.name} tipo={abilidade.stat.name} tamanho={abilidade['base_stat']} />) 
                 
     
                 
@@ -72,7 +72,7 @@ function Pokemon() {
                 
                 
 
-                return ( <ConteinerCor key={abilidade.stat.name} tipo={abilidade.stat.name} tamanho={abilidade['base_stat']} numero={abilidade['base_stat']}/>) }) }/>  */}
+                return ( <ConteinerCor key={abilidade.stat.name} tipo={abilidade.stat.name} tamanho={abilidade['base_stat']} />) }) }/>  */}
         </div>
     )
 }
