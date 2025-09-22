@@ -1,0 +1,92 @@
+CREATE DATABASE estacionamento;
+
+USE estacionamento;
+
+CREATE TABLE cliente(
+id_cliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(45),
+dt_nacimento DATE
+);
+
+
+CREATE TABLE categoria(
+id_categoria INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(45),
+descricao TEXT
+);
+
+
+CREATE TABLE veiculo(
+id_veiculo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+placa VARCHAR(10),
+cor VARCHAR(40),
+cliente_id INT,
+categoria_id INT,
+FOREIGN KEY(cliente_id)
+REFERENCES cliente(id_cliente) ,
+FOREIGN KEY(categoria_id)
+REFERENCES categoria(id_categoria)
+);
+
+CREATE TABLE estacionamento(
+id_estacionamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(45),
+capacidade INT,
+dt_entrada DATE,
+dt_saida DATE,
+hora_entrada TIME,
+hora_saida TIME,
+veiculo_id INT,
+FOREIGN KEY(veiculo_id)
+REFERENCES veiculo (id_veiculo)
+);
+
+INSERT INTO categoria(nome,descricao) VALUES('utilitario','carro'),('van','carro'),('pick-up','carro');
+
+INSERT INTO cliente(nome,dt_nacimento) VALUES ('felipe','1996-01-18'),('joao','2000-05-18'),('ronald','2005-05-20');
+
+INSERT INTO veiculo(placa,cor,cliente_id,categoria_id) VALUES('AAA-2020','Preto','1','2'),('BBB-1111','Branco','1','3'),('CCC-5050','Azul','2','3'),('DDD-1234','Branco','1','2');
+
+INSERT INTO veiculo(placa,cor) VALUES('RRR-2525','AZUL');
+
+INSERT INTO estacionamento (nome,capacidade,dt_entrada,dt_saida,hora_entrada,hora_saida,veiculo_id) 
+VALUE
+  ('Estacionamento Centro', 100, '2025-09-22', '2025-09-22', '08:00:00', '12:00:00', 1),
+  ('Estacionamento Norte', 50, '2025-09-22', '2025-09-22', '09:30:00', '14:15:00', 2),
+  ('Estacionamento Sul', 75, '2025-09-21', '2025-09-22', '18:00:00', '07:00:00', 3);
+  
+  
+  SELECT * FROM veiculo 
+  JOIN categoria
+  JOIN cliente;
+  
+  SELECT * FROM veiculo 
+  LEFT JOIN cliente ON veiculo.cliente_id = cliente.id_cliente; 
+  
+  SELECT * FROM veiculo 
+  RIGHT JOIN categoria ON veiculo.categoria_id = categoria.id_categoria; 
+  
+  
+  SELECT * FROM veiculo 
+  RIGHT JOIN categoria ON veiculo.categoria_id = categoria.id_categoria; 
+
+  SELECT * FROM veiculo 
+  LEFT JOIN cliente ON veiculo.cliente_id = cliente.id_cliente
+  UNION
+  SELECT * FROM veiculo 
+  RIGHT JOIN cliente ON veiculo.cliente_id = cliente.id_cliente
+  ;
+  
+  
+  SELECT  veiculo.id_veiculo,veiculo.placa ,veiculo.cor,cliente.nome FROM veiculo JOIN cliente ON veiculo.cliente_id = cliente.id_cliente;
+  
+  
+  CREATE VIEW vw_veiculo_cliente AS 
+  SELECT  veiculo.id_veiculo,veiculo.placa ,veiculo.cor,cliente.nome FROM veiculo JOIN cliente ON veiculo.cliente_id = cliente.id_cliente;
+  
+  
+SELECT * FROM vw_veiculo_cliente;
+
+
+
+
