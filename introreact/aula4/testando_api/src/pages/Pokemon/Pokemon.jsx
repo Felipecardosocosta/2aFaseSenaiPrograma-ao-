@@ -7,6 +7,7 @@ import Abas from '../../components/Abas'
 import NotificationRoot from '../../components/Notification/NotificationRoot'
 import NotificationButton from '../../components/Notification/NotificationButton'
 import NotificationText from '../../components/Notification/NotificationText'
+import imgGif from '../../server/imgGif'
 
 
 function Pokemon() {
@@ -15,7 +16,7 @@ function Pokemon() {
     const [erro, setErro] = useState(false)
     const [carregando, setCarregando] = useState(true)
 
-    
+
 
 
     useEffect(() => {
@@ -40,20 +41,36 @@ function Pokemon() {
 
 
 
-     if (erro) {
+    if (erro) {
         return <p>Erro...</p>
     }
 
     if (carregando) {
-       return <p>Carregando...</p>
+        return <p>Carregando...</p>
     }
 
     return (
         <div>
             <NotificationRoot>
-                <NotificationText imgTest={false} content={"Ola mundo cruel"} />
-                <NotificationButton nameAction={'Heloow'} />
+                <NotificationText
+                    imgTest={imgGif(pokemon)}
+                    content={pokemon.stats.map(abilidade => {
+                        return (
+                            <ConteinerCor
+                                key={abilidade.stat.name}
+                                tipo={abilidade.stat.name}
+                                tamanho={abilidade['base_stat']}
+                            />
+                        )
+                    })}
+                />
+                <NotificationButton
+                    action={() => { alert(pokemon.name.toUpperCase()) }}
+                    nameAction={'Heloow'}
+                />
             </NotificationRoot>
+
+
             {/* <ConteinerCor tipo={'atack'} numero={50} tamanho={70}/> */}
 
             {/* {pokemon && <div><h2>{pokemon.name}</h2> {<img className='img' src={pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt="" />} <div>
