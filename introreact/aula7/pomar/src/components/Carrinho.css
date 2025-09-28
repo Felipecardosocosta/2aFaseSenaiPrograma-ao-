@@ -11,8 +11,16 @@
     padding: 1rem;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 10px;
 
 
+}
+.cont-carrinho button{
+    background-color: #1a1a1ae7;
+}
+.cont-carrinho button:hover{
+    background-color: #1a1a1a;
+    scale: 1.07;
 }
 
 
