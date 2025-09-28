@@ -1,4 +1,5 @@
-.modal{
+.modal {
+    color: black;
     border: 1px solid;
     padding: 2rem;
     display: flex;
@@ -6,39 +7,48 @@
     align-items: flex-start;
     gap: 1rem;
     border-radius: 20px 40px;
+    background-image: url('../../public/img/image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 1px 1px 10px #1a1a1ada;
 
 }
-.modal::before{
-    content: 'Pomar';
-    text-transform: uppercase;
-    color: rgb(196, 127, 127);
-    text-align: center;
-    width: 100%;
-    margin-bottom: 10px;
 
-}
-.modal button{
+.modal button {
     width: 60%;
     height: 30%;
     align-self: center;
+    background-color: #1a1a1ac0;
+    box-shadow: 0 0 5px #1a1a1a;
+    transition: .3s ease-in-out scale;
 
 }
-.modal label{
+
+.modal button:hover {
+    scale: 1.03;
+}
+
+
+
+
+.modal label {
     text-align: left;
     display: flex;
     gap: 10px;
 }
 
-.modal input{
+.modal input {
     width: 20%;
     padding: 0.2rem;
     border: none;
     border-radius: 5px;
     text-align: center;
-    
+    background-color: #1a1a1ab7;
+
 }
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
