@@ -1,0 +1,44 @@
+.modal{
+    border: 1px solid;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    border-radius: 20px 40px;
+
+}
+.modal::before{
+    content: 'Pomar';
+    text-transform: uppercase;
+    color: rgb(196, 127, 127);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+.modal button{
+    width: 60%;
+    height: 30%;
+    align-self: center;
+
+}
+.modal label{
+    text-align: left;
+    display: flex;
+    gap: 10px;
+}
+
+.modal input{
+    width: 20%;
+    padding: 0.2rem;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

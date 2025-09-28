@@ -3,6 +3,7 @@ import controleForm from '../hooks/controleForm'
 import Input from './Input'
 import Seletor from './Seletor'
 import Carrinho from './Carrinho'
+import './Modal.css'
 
 
 function Modal() {
@@ -36,7 +37,10 @@ function Modal() {
     return (
         <>
         {pagina === "adcionar"? <div className='modal' >
-            
+        <label htmlFor="#">Fruta:
+        <Seletor valor={value.seletor} setValor={alterarValue} opcao={frutas}/>
+        </label>  
+
             {todosInput.map(input => (
                 <Input
                 key={input.id}
@@ -46,14 +50,13 @@ function Modal() {
                     funcao={input.funcao}
                 />)
             )}
-            <Seletor valor={value.seletor} setValor={alterarValue} opcao={frutas}/>
             <button onClick={salvar} >Adicionar</button>
 
             <button onClick={()=> setPagina('carrinho')} >Abrir Carrinho</button>
             
 
         </div>
-        : <div><Carrinho produtos={carrinho} setar={setCarrinho} setVoltar={setPagina} /> </div>}
+        : <Carrinho produtos={carrinho} setar={setCarrinho} setVoltar={setPagina} /> }
         </>
     )
 }
