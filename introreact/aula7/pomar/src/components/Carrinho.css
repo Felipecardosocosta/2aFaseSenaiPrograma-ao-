@@ -1,0 +1,49 @@
+.cont-carrinho{
+    background-image: url('./img/fundo-tabela.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 80vw;
+    height: 80vh;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+.cont-carrinho {
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.cont-carrinho th,
+.cont-carrinho td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  text-align: center;
+  background-color: #1a1a1ad2;
+  border-radius: 2px;
+ 
+}
+
+.cont-carrinho th {
+  background-color: #1a1a1ad2;
+  color: white;
+}
+
+
+
+.cont-carrinho tr:hover {
+  background-color: #242424; 
+}
+.cont-carrinho h2{
+    border: 1px solid;
+    background-color: #1a1a1ad2;
+    padding: 10px;
+    border-radius: 5px;
+}

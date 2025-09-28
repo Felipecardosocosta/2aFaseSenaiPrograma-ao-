@@ -1,4 +1,5 @@
 import React from 'react'
+import './Carrinho.css'
 
 function Carrinho({produtos,setar,setVoltar}) {
   
@@ -6,7 +7,7 @@ function Carrinho({produtos,setar,setVoltar}) {
 
     return (
         <div className='cont-carrinho'>
-            <table border={1}>
+            <table  >
                 <thead>
                     <tr>
                         <th>Fruta</th>
@@ -30,7 +31,7 @@ function Carrinho({produtos,setar,setVoltar}) {
 
             </table>
 
-            <h2>total a pagar é de R$: {produtos.reduce((acc,pro)=> acc + pro.valor*pro.quantidade ,0 )}</h2>
+            <h2>Total é de R$: {produtos.reduce((acc,pro)=> acc + pro.valor*pro.quantidade ,0 )}</h2>
 
             <button onClick={()=> setVoltar("adcionar") }>Voltar</button>
 

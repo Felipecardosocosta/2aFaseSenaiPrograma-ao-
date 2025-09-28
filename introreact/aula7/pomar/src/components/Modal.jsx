@@ -9,7 +9,7 @@ import './Modal.css'
 function Modal() {
     const [value, alterarValue] = controleForm({ Quantidade: '', Fruta: '' })
     const [carrinho, setCarrinho] = useState([])
-    const [pagina, setPagina]= useState('adcionar')
+    const [pagina, setPagina] = useState('adcionar')
 
 
     const todosInput = [{
@@ -17,46 +17,48 @@ function Modal() {
         tipo: "number",
         valor: value.Quantidade,
         funcao: alterarValue,
-        id:1
+        id: 1
     }
     ]
     const frutas = [
-        {nome: 'Maçã', valor:1.5},
-        {nome: 'Laranja', valor:2.0},
-        {nome: 'Bergamota', valor:1.0},
-        {nome: 'Maçã', valor:1.2},
-        {nome: 'Pera', valor: 0.5}
+        { nome: 'Maçã', valor: 1.5 },
+        { nome: 'Laranja', valor: 2.0 },
+        { nome: 'Bergamota', valor: 1.0 },
+        { nome: 'Maçã', valor: 1.2 },
+        { nome: 'Pera', valor: 0.5 }
 
     ]
-    function salvar(){
+    function salvar() {
         let valor = JSON.parse(value.seletor)
-        let produto = {...valor, quantidade: value.Quantidade}
-        setCarrinho([...carrinho,produto])
+        let produto = { ...valor, quantidade: value.Quantidade }
+        setCarrinho([...carrinho, produto])
         console.table(carrinho);
     }
     return (
         <>
-        {pagina === "adcionar"? <div className='modal' >
-        <label htmlFor="#">Fruta:
-        <Seletor valor={value.seletor} setValor={alterarValue} opcao={frutas}/>
-        </label>  
+            {pagina === "adcionar" ? <div className='modal' >
+                <div className='cont-inputs'>
+                    <label htmlFor="#">Fruta:
+                        <Seletor valor={value.seletor} setValor={alterarValue} opcao={frutas} />
+                    </label>
 
-            {todosInput.map(input => (
-                <Input
-                key={input.id}
-                    nome={input.name}
-                    tipo={input.tipo}
-                    valor={input.valor}
-                    funcao={input.funcao}
-                />)
-            )}
-            <button onClick={salvar} >Adicionar</button>
+                    {todosInput.map(input => (
+                        <Input
+                            key={input.id}
+                            nome={input.name}
+                            tipo={input.tipo}
+                            valor={input.valor}
+                            funcao={input.funcao}
+                        />)
+                    )}
+                </div>
+                <button onClick={salvar} >Adicionar</button>
 
-            <button onClick={()=> setPagina('carrinho')} >Abrir Carrinho</button>
-            
+                <button onClick={() => setPagina('carrinho')} >Abrir Carrinho</button>
 
-        </div>
-        : <Carrinho produtos={carrinho} setar={setCarrinho} setVoltar={setPagina} /> }
+
+            </div>
+                : <Carrinho produtos={carrinho} setar={setCarrinho} setVoltar={setPagina} />}
         </>
     )
 }
