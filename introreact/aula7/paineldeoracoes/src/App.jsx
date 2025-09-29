@@ -82,7 +82,7 @@ function App() {
       {count === "Front" ? <Pagina conteudo={oraçoes.Front} /> :
         count === "FullStack" ? <Pagina conteudo={oraçoes.FullStack} /> :
           count === 'Programador' ? <Pagina conteudo={oraçoes.Programador} /> :
-            <p>Bem Vindo</p>
+            <h2>Bem Vindo!!</h2>
       }
     </>
   )
