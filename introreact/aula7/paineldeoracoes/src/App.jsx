@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Buttons from './components/Buttons'
 import Pagina from './components/Pagina'
-import ReplaceExamples from './components/Replace'
+
 
 function App() {
   const [count, setCount] = useState('')
