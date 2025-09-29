@@ -4,7 +4,7 @@ import './Pagina.css'
 function Pagina({conteudo=[]}) {
   return (
     <div className='divConteudo'>
-      {conteudo.map(texto=> (<p>{texto}</p>))}
+      {conteudo.map(texto=> (<p key={texto}>{texto}</p>))}
     </div>
   )
 }
