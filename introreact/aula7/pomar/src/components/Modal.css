@@ -18,7 +18,12 @@
     box-shadow: 0 0 10px #dddddd;
 
 }
-
+@media (prefers-color-scheme: light) {
+    .modal{
+       box-shadow: 0 0 15px #000000;
+       border: none;
+    }
+}
 .modal button {
     align-self: center;
     background-color: #1a1a1ad2;
@@ -61,6 +66,8 @@
 }
 .modal select{
     height: 30px;
+    background-color: #1a1a1ab7;
+    color: rgb(255, 255, 255, 0.87);
 
 }
 

@@ -11,9 +11,14 @@
     padding: 1rem;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 10px #dddddd;
 
 
+}
+@media (prefers-color-scheme: light) {
+    .cont-carrinho{
+       box-shadow: 0 0 15px #000000; 
+    }
 }
 .cont-carrinho button{
     background-color: #1a1a1ae7;
