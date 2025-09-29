@@ -78,7 +78,7 @@ function App() {
   }
   return (
     <>
-      <Buttons nomes={Object.keys(oraçoes)} setEstado={setCount} />
+      <Buttons nomes={Object.keys(oraçoes)} estado={count} setEstado={setCount} />
       {count === "Front" ? <Pagina conteudo={oraçoes.Front} /> :
         count === "FullStack" ? <Pagina conteudo={oraçoes.FullStack} /> :
           count === 'Programador' ? <Pagina conteudo={oraçoes.Programador} /> :
