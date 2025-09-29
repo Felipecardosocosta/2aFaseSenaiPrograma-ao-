@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Buttons from './components/Buttons'
 import Pagina from './components/Pagina'
+import ReplaceExamples from './components/Replace'
 
 function App() {
   const [count, setCount] = useState('')
@@ -84,6 +85,7 @@ function App() {
           count === 'Programador' ? <Pagina conteudo={oraçoes.Programador} /> :
             <h2>Bem Vindo!!</h2>
       }
+      
     </>
   )
 }
