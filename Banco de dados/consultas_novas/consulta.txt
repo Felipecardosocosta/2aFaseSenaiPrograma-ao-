@@ -1,0 +1,90 @@
+CREATE DATABASE estacionamento;
+
+USE estacionamento;
+
+CREATE TABLE estacionamento(
+id_estacionamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(45),
+capacidade INT,
+subsolo ENUM('SIM','NAO'),
+especial ENUM('SIM','NAO')
+);
+INSERT INTO estacionamento(nome,capacidade,subsolo,especial)
+ VALUES 
+('Estacionamento A','20','NAO','NAO'),
+('Estacionamento B','35','SIM','SIM'),
+('Estacionamento C','40','SIM','SIM'),
+('Estacionamento D', 50,'SIM','SIM'),
+('Estacionamento E','15','SIM','NAO'),
+('Estacionamento F','85','SIM','SIM')
+,('Estacionamento G','100','NAO','NAO')
+;
+
+
+SELECT nome, capacidade FROM estacionamento 
+WHERE capacidade >=20 AND 
+capacidade <=40 AND
+subsolo ='SIM' AND
+especial = 'SIM' 
+ORDER BY capacidade ASC
+;
+
+SELECT * FROM estacionamento WHERE capacidade >50 ORDER BY capacidade DESC;
+
+SELECT * FROM estacionamento WHERE capacidade >80 OR nome = 'Estacionamento B';
+
+SELECT * FROM estacionamento WHERE subsolo = "SIM" AND especial = "SIM";
+
+
+CREATE TABLE cliente(
+id_cliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(45)
+);
+
+CREATE TABLE mensalidade(
+id_mensalidade INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+valor DECIMAL(8,2),
+status_pagamento VARCHAR(45),
+cliente_id INT,
+FOREIGN KEY (cliente_id)
+REFERENCES cliente (id_cliente)
+);
+
+INSERT INTO cliente
+(nome)
+VALUE ('Jose'), ('Carlos'), ('Marcos');
+
+INSERT INTO mensalidade
+(valor, status_pagamento, cliente_id)
+VALUE (650.00, 'FATURA PAGA', 1),
+(670.00, 'FATURA PAGA', 2),
+(690.00, 'FATURA PAGA', 3),
+(720.00, 'EM DÉBITO', 1),
+(740.00, 'EM DÉBITO', 2),
+(760.00, 'EM DÉBITO', 3),
+(800.00, 'EM DÉBITO', 3);
+
+SELECT count(mensalidade.status_pagamento) AS contagem_mensalidades FROM mensalidade;
+
+SELECT cliente.nome, count(mensalidade.status_pagamento) FROM mensalidade 
+JOIN cliente 
+ON mensalidade.cliente_id = cliente.id_cliente
+GROUP BY cliente.nome
+;
+
+SELECT cliente.nome, sum(mensalidade.valor) FROM mensalidade
+JOIN cliente
+ON mensalidade.cliente_id = cliente.id_cliente
+GROUP BY cliente.nome;
+
+SELECT cliente.nome, avg(mensalidade.valor) FROM mensalidade
+JOIN cliente
+ON mensalidade.cliente_id = cliente.id_cliente
+GROUP BY cliente.nome;
+
+SELECT cliente.nome, sum(mensalidade.valor) FROM mensalidade
+JOIN cliente 
+ON mensalidade.cliente_id = cliente.id_cliente 
+WHERE mensalidade.status_pagamento = 'EM DÉBITO'
+GROUP BY cliente.nome;
+
