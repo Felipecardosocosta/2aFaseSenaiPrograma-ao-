@@ -1,4 +1,4 @@
-import { Children } from "react";
+
 import { createContext,useState } from "react";
 
 
@@ -11,9 +11,9 @@ const GlobalContextProvider = ({children})=>{
 
 
     return(
-        <GlobalContextProvider value={{usuario,setUsuario}}>
+        <GlobalContext.Provider value={{usuario,setUsuario}}>
             {children}
-        </GlobalContextProvider>
+        </GlobalContext.Provider>
     )
 }
 
