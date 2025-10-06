@@ -1,0 +1,566 @@
+# 📘 Resumo SQL — tudo com exemplos curtos
+
+## 🟢 Criar tabela
+
+```sql
+CREATE TABLE cliente (
+  id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+  nome_cliente VARCHAR(100),
+  cpf_cliente CHAR(11)
+);
+```
+
+## 🔵 Inserir dados
+
+```sql
+INSERT INTO cliente (nome_cliente, cpf_cliente)
+VALUES ('Ana Souza', '12345678901');
+```
+
+## 🟣 Selecionar dados
+
+```sql
+SELECT * FROM cliente;
+SELECT nome_cliente, cpf_cliente FROM cliente;
+```
+
+## 🟠 Atualizar dados
+
+```sql
+UPDATE cliente
+SET nome_cliente = 'Ana Paula'
+WHERE id_cliente = 1;
+```
+
+## 🔴 Deletar dados
+
+```sql
+DELETE FROM cliente
+WHERE id_cliente = 1;
+```
+
+## 🟡 Alterar tabela
+
+```sql
+-- Adicionar coluna
+ALTER TABLE cliente ADD telefone VARCHAR(15);
+
+-- Alterar tipo
+ALTER TABLE cliente MODIFY telefone CHAR(11);
+
+-- Renomear coluna
+ALTER TABLE cliente CHANGE nome_cliente nome VARCHAR(100);
+
+-- Deletar coluna
+ALTER TABLE cliente DROP COLUMN telefone;
+```
+
+## ⚪ Excluir tabela
+
+```sql
+DROP TABLE cliente;
+```
+
+## 🟢 Criar banco de dados
+
+```sql
+CREATE DATABASE loja;
+```
+
+## 🔵 Selecionar banco
+
+```sql
+USE loja;
+```
+
+## 🟣 Criar chave estrangeira (ligação entre tabelas)
+
+```sql
+CREATE TABLE conta (
+  id_conta INT PRIMARY KEY AUTO_INCREMENT,
+  cliente_id INT,
+  saldo DECIMAL(10,2),
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id_cliente)
+);
+```
+
+## 🟠 INNER JOIN — mostra só correspondentes
+
+```sql
+SELECT c.nome, ct.saldo
+FROM cliente c
+INNER JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+## 🔴 LEFT JOIN — todos da esquerda
+
+```sql
+SELECT c.nome, ct.saldo
+FROM cliente c
+LEFT JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+## 🟡 RIGHT JOIN — todos da direita
+
+```sql
+SELECT c.nome, ct.saldo
+FROM cliente c
+RIGHT JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+## ⚪ FULL JOIN — todos de ambos
+
+```sql
+SELECT c.nome, ct.saldo
+FROM cliente c
+LEFT JOIN conta ct ON c.id_cliente = ct.cliente_id
+UNION
+SELECT c.nome, ct.saldo
+FROM cliente c
+RIGHT JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+## 🟢 Filtrar resultados
+
+```sql
+SELECT * FROM cliente WHERE nome LIKE 'A%';
+SELECT * FROM conta WHERE saldo >= 500;
+```
+
+## 🔵 Ordenar resultados
+
+```sql
+SELECT * FROM cliente ORDER BY nome ASC;
+SELECT * FROM conta ORDER BY saldo DESC;
+```
+
+## 🟣 Contar, somar e agrupar
+
+```sql
+SELECT COUNT(*) FROM cliente;
+SELECT SUM(saldo) FROM conta;
+SELECT cliente_id, SUM(saldo) FROM conta GROUP BY cliente_id;
+```
+
+## 🟠 Renomear resultados
+
+```sql
+SELECT nome_cliente AS Nome, cpf_cliente AS CPF FROM cliente;
+```
+
+## 🔴 Criar visão (consulta salva)
+
+```sql
+CREATE VIEW clientes_com_conta AS
+SELECT c.nome, ct.saldo
+FROM cliente c
+INNER JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+---
+
+🧠 **Dica final de revisão rápida:**
+
+* **CREATE** → cria
+* **INSERT** → adiciona
+* **SELECT** → consulta
+* **UPDATE** → altera
+* **DELETE** → remove
+* **ALTER TABLE** → muda estrutura
+* **JOIN** → conecta tabelas
+
+
+🧠 CONCEITOS FUNDAMENTAIS
+💾 O que é Banco de Dados
+
+Conjunto de informações organizadas para fácil acesso e atualização.
+
+🧰 SGBD
+
+Sistema Gerenciador de Banco de Dados, exemplo:
+➡️ MySQL, SQL Server, Oracle.
+
+🧩 Tipos
+
+Relacional: dados em tabelas (linhas e colunas).
+
+Não Relacional: dados livres (JSON, documentos, etc).
+
+
+🧾 TIPOS DE MODELOS
+
+| Modelo         | O que faz                                                   | Exemplo                   |
+| -------------- | ----------------------------------------------------------- | ------------------------- |
+| **Conceitual** | Mostra entidades e relacionamentos (sem detalhes técnicos). | Cliente — Produto         |
+| **Lógico**     | Mostra as tabelas, colunas e tipos de relacionamento.       | cliente(id_cliente, nome) |
+| **Físico**     | É o código SQL real no banco (CREATE TABLE etc).            | CREATE TABLE cliente(...) |
+
+📚 TIPOS DE DADOS MAIS USADOS
+
+| Tipo                  | Uso                       | Exemplo                    |
+| --------------------- | ------------------------- | -------------------------- |
+| **INT**               | Número inteiro            | idade INT                  |
+| **BIGINT**            | Número grande (ex: CPF)   | cpf BIGINT(11)             |
+| **DECIMAL(8,2)**      | Número com casas decimais | preço DECIMAL(8,2)         |
+| **VARCHAR(50)**       | Texto curto               | nome VARCHAR(50)           |
+| **TEXT**              | Texto longo               | observacao TEXT            |
+| **DATE**              | Data                      | 2025-10-06                 |
+| **ENUM('Sim','Não')** | Escolha fixa              | graduado ENUM('Sim','Não') |
+
+🧮 GRUPOS DE COMANDOS SQL
+
+| Comando                  | Função                  | Exemplo                                 |
+| ------------------------ | ----------------------- | --------------------------------------- |
+| **CREATE DATABASE nome** | Cria banco de dados     | CREATE DATABASE escola;                 |
+| **USE nome**             | Seleciona o banco       | USE escola;                             |
+| **CREATE TABLE**         | Cria tabela             | CREATE TABLE aluno(...);                |
+| **ALTER TABLE**          | Altera tabela existente | ALTER TABLE aluno ADD COLUMN idade INT; |
+| **DROP TABLE**           | Apaga tabela            | DROP TABLE aluno;                       |
+
+🔹 DML – Data Manipulation Language (dados)
+
+| Comando         | Função         | Exemplo                                   |
+| --------------- | -------------- | ----------------------------------------- |
+| **INSERT INTO** | Insere dados   | INSERT INTO aluno(nome) VALUES ('João');  |
+| **UPDATE**      | Atualiza dados | UPDATE aluno SET nome='Maria' WHERE id=1; |
+| **DELETE FROM** | Apaga dados    | DELETE FROM aluno WHERE id=1;             |
+| **SELECT**      | Consulta dados | SELECT * FROM aluno;                      |
+
+
+🧱 CONCEITOS DAS TABELAS
+
+| Conceito                   | Significado         | Exemplo                    |
+| -------------------------- | ------------------- | -------------------------- |
+| **Entidade**               | Tabela              | cliente                    |
+| **Atributo**               | Coluna              | nome_cliente               |
+| **Registro**               | Linha de dados      | (1, 'João', ...)           |
+| **Chave Primária (PK)**    | Identificador único | id_cliente                 |
+| **Chave Estrangeira (FK)** | Liga tabelas        | cliente_id na tabela conta |
+
+
+🔗 RELACIONAMENTOS E CARDINALIDADE
+
+| Tipo    | Significado        | Exemplo           |
+| ------- | ------------------ | ----------------- |
+| **1:1** | Um para um         | Pessoa ↔ CPF      |
+| **1:N** | Um para vários     | Cliente ↔ Pedidos |
+| **N:N** | Vários para vários | Alunos ↔ Cursos   |
+
+🧩 PRINCIPAIS COMANDOS EXPLICADOS
+
+| Comando                                                                    | O que faz                  | Exemplo                                                                        |
+| -------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| **ALTER TABLE nome_tabela ADD COLUMN**                                     | Adiciona coluna            | ALTER TABLE cliente ADD COLUMN renda DECIMAL(8,2);                             |
+| **ALTER TABLE nome_tabela DROP COLUMN**                                    | Remove coluna              | ALTER TABLE cliente DROP COLUMN cidade;                                        |
+| **ALTER TABLE nome_tabela MODIFY COLUMN**                                  | Altera tipo da coluna      | ALTER TABLE cliente MODIFY COLUMN nome VARCHAR(100);                           |
+| **ALTER TABLE nome_tabela RENAME COLUMN antigo TO novo**                   | Muda nome da coluna        | ALTER TABLE cliente RENAME COLUMN telefone TO celular;                         |
+| **ALTER TABLE nome_tabela RENAME TO novo_nome**                            | Renomeia tabela            | ALTER TABLE cliente RENAME TO usuario;                                         |
+| **ALTER TABLE nome_tabela ADD FOREIGN KEY(...) REFERENCES tabela(coluna)** | Cria chave estrangeira     | ALTER TABLE conta ADD FOREIGN KEY (cliente_id) REFERENCES cliente(id_cliente); |
+| **ALTER TABLE nome_tabela DROP FOREIGN KEY nome_fk**                       | Remove chave estrangeira   | ALTER TABLE conta DROP FOREIGN KEY conta_ibfk_1;                               |
+| **DESCRIBE tabela**                                                        | Mostra estrutura da tabela | DESCRIBE cliente;                                                              |
+| **SELECT * FROM tabela**                                                   | Mostra todos os registros  | SELECT * FROM cliente;                                                         |
+
+⚙️ CONSTRAINTS (REGRAS)
+
+| Constraint      | Função                 | Exemplo                                   |
+| --------------- | ---------------------- | ----------------------------------------- |
+| **NOT NULL**    | Campo obrigatório      | nome VARCHAR(50) NOT NULL                 |
+| **UNIQUE**      | Valor não pode repetir | cpf BIGINT UNIQUE                         |
+| **DEFAULT**     | Valor padrão           | pais VARCHAR(50) DEFAULT 'Brasil'         |
+| **ENUM**        | Opções fixas           | graduado ENUM('Sim','Não')                |
+| **CHECK**       | Regra de validação     | CHECK(num_filhos >= 0)                    |
+| **PRIMARY KEY** | Identifica registro    | id_cliente INT PRIMARY KEY                |
+| **FOREIGN KEY** | Liga tabelas           | cliente_id REFERENCES cliente(id_cliente) |
+
+# 📘 RESUMO COMPLETO DE SQL — COM EXEMPLOS E TESTES DE ERRO
+
+---
+
+## 🟢 CRIAR TABELA
+
+```sql
+CREATE TABLE cliente (
+  id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+  nome_cliente VARCHAR(100),
+  cpf_cliente CHAR(11)
+);
+```
+
+✅ **Correto:** todos os tipos e vírgulas certos.
+❌ **Erro comum:**
+
+```sql
+CREATE TABLE cliente (
+  id_cliente INT PRIMARY KEY AUTO_INCREMENT
+  nome_cliente VARCHAR(100) -- faltou vírgula
+);
+```
+
+🧠 **Correção:** sempre coloque vírgula entre colunas.
+
+---
+
+## 🔵 INSERIR DADOS
+
+```sql
+INSERT INTO cliente (nome_cliente, cpf_cliente)
+VALUES ('Ana Souza', '12345678901');
+```
+
+❌ **Erro comum:**
+
+```sql
+INSERT INTO cliente VALUES ('Ana Souza', '12345678901'); 
+```
+
+🧠 **Correção:** precisa seguir a ordem das colunas ou indicar todas no comando.
+
+---
+
+## 🟣 SELECIONAR DADOS
+
+```sql
+SELECT * FROM cliente;
+SELECT nome_cliente, cpf_cliente FROM cliente;
+```
+
+❌ **Erro comum:**
+
+```sql
+SELECT nome_cliente cpf_cliente FROM cliente; 
+```
+
+🧠 **Correção:** sempre separe colunas com vírgula.
+
+---
+
+## 🟠 ATUALIZAR DADOS
+
+```sql
+UPDATE cliente
+SET nome_cliente = 'Ana Paula'
+WHERE id_cliente = 1;
+```
+
+❌ **Erro comum:** esquecer o `WHERE` e alterar todos os registros.
+
+---
+
+## 🔴 DELETAR DADOS
+
+```sql
+DELETE FROM cliente WHERE id_cliente = 1;
+```
+
+❌ **Erro comum:**
+
+```sql
+DELETE cliente WHERE id_cliente = 1;
+```
+
+🧠 **Correção:** sempre use `DELETE FROM`.
+
+---
+
+## 🟡 ALTERAR TABELA
+
+```sql
+ALTER TABLE cliente ADD telefone VARCHAR(15);
+ALTER TABLE cliente MODIFY telefone CHAR(11);
+ALTER TABLE cliente CHANGE nome_cliente nome VARCHAR(100);
+ALTER TABLE cliente DROP COLUMN telefone;
+```
+
+❌ **Erro comum:**
+
+```sql
+ALTER cliente ADD telefone VARCHAR(15);
+```
+
+🧠 **Correção:** precisa da palavra **TABLE** → `ALTER TABLE`.
+
+---
+
+## ⚪ EXCLUIR TABELA
+
+```sql
+DROP TABLE cliente;
+```
+
+---
+
+## 🟢 CRIAR BANCO DE DADOS
+
+```sql
+CREATE DATABASE loja;
+```
+
+❌ **Erro comum:** criar sem ponto e vírgula no final.
+
+---
+
+## 🔵 SELECIONAR BANCO
+
+```sql
+USE loja;
+```
+
+✅ **Usa o banco antes de criar as tabelas.**
+
+---
+
+## 🟣 CHAVE ESTRANGEIRA
+
+```sql
+CREATE TABLE conta (
+  id_conta INT PRIMARY KEY AUTO_INCREMENT,
+  cliente_id INT,
+  saldo DECIMAL(10,2),
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id_cliente)
+);
+```
+
+❌ **Erro comum:**
+
+```sql
+FOREIGN KEY cliente_id REFERENCES cliente(id_cliente);
+```
+
+🧠 **Correção:** precisa de parênteses → `(cliente_id)`.
+
+---
+
+## 🟠 INNER JOIN
+
+```sql
+SELECT c.nome_cliente, ct.saldo
+FROM cliente c
+INNER JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+✅ Mostra apenas clientes com conta.
+
+---
+
+## 🔴 LEFT JOIN
+
+```sql
+SELECT c.nome_cliente, ct.saldo
+FROM cliente c
+LEFT JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+✅ Mostra todos os clientes, mesmo sem conta.
+❌ **Erro comum:** usar `WHERE ct.saldo > 0` — transforma em INNER JOIN.
+
+---
+
+## 🟡 RIGHT JOIN
+
+```sql
+SELECT c.nome_cliente, ct.saldo
+FROM cliente c
+RIGHT JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+✅ Mostra todas as contas, mesmo sem cliente.
+
+---
+
+## ⚪ FULL JOIN (em MySQL precisa emular)
+
+```sql
+SELECT c.nome_cliente, ct.saldo
+FROM cliente c
+LEFT JOIN conta ct ON c.id_cliente = ct.cliente_id
+UNION
+SELECT c.nome_cliente, ct.saldo
+FROM cliente c
+RIGHT JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+---
+
+## 🟢 FILTRAR RESULTADOS
+
+```sql
+SELECT * FROM cliente WHERE nome_cliente LIKE 'A%';
+SELECT * FROM conta WHERE saldo >= 500;
+```
+
+---
+
+## 🔵 ORDENAR RESULTADOS
+
+```sql
+SELECT * FROM cliente ORDER BY nome_cliente ASC;
+SELECT * FROM conta ORDER BY saldo DESC;
+```
+
+---
+
+## 🟣 FUNÇÕES DE AGREGAÇÃO
+
+```sql
+SELECT COUNT(*) FROM cliente;
+SELECT SUM(saldo) FROM conta;
+SELECT cliente_id, SUM(saldo) FROM conta GROUP BY cliente_id;
+```
+
+---
+
+## 🟠 RENOMEAR RESULTADOS
+
+```sql
+SELECT nome_cliente AS Nome, cpf_cliente AS CPF FROM cliente;
+```
+
+---
+
+## 🔴 VIEW (consulta salva)
+
+```sql
+CREATE VIEW clientes_com_conta AS
+SELECT c.nome_cliente, ct.saldo
+FROM cliente c
+INNER JOIN conta ct ON c.id_cliente = ct.cliente_id;
+```
+
+---
+
+## ⚪ TESTES DE ERRO GERAIS (caem muito em prova!)
+
+| Tipo de erro                    | Exemplo incorreto                                 | Correto                                                                                               |
+| ------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Falta vírgula                   | `SELECT nome cpf FROM cliente;`                   | `SELECT nome, cpf FROM cliente;`                                                                      |
+| Falta ponto e vírgula           | `CREATE TABLE teste (id INT)`                     | `CREATE TABLE teste (id INT);`                                                                        |
+| Falta FROM                      | `SELECT nome_cliente;`                            | `SELECT nome_cliente FROM cliente;`                                                                   |
+| Tabela inexistente              | `SELECT * FROM client;`                           | `SELECT * FROM cliente;`                                                                              |
+| Falta alias                     | `SELECT nome_cliente, saldo FROM cliente, conta;` | `SELECT c.nome_cliente, ct.saldo FROM cliente c INNER JOIN conta ct ON c.id_cliente = ct.cliente_id;` |
+| Falta de WHERE em UPDATE/DELETE | `DELETE FROM cliente;`                            | `DELETE FROM cliente WHERE id_cliente = 1;`                                                           |
+| Esquecer TABLE                  | `ALTER cliente ADD coluna;`                       | `ALTER TABLE cliente ADD coluna;`                                                                     |
+
+---
+
+## 🧠 DICA FINAL
+
+* **CREATE** → cria algo novo
+* **INSERT** → adiciona dados
+* **SELECT** → consulta dados
+* **UPDATE** → altera dados
+* **DELETE** → apaga dados
+* **ALTER TABLE** → muda a estrutura
+* **JOIN** → une tabelas
+
+🎯 **Quer revisar rápido?**
+
+> INNER = só correspondentes
+> LEFT = todos da esquerda
+> RIGHT = todos da direita
+> FULL = todos de ambos
+
+Boa prova! 💪
+
+
+
+
