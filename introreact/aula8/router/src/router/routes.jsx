@@ -4,6 +4,8 @@ import Produtos from '../pages/Produtos'
 import Cadastro from '../pages/Cadastro'
 
 
+
+
 const router = createBrowserRouter([
     { path: '/', element: <Home /> },
     { path: '/produtos', element: <Produtos /> },
