@@ -4,12 +4,11 @@ import { useContext } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext'
 
 function Home() {
-    const {usuario, setUsuario} = useContext(GlobalContext)
+    const { usuario, setUsuario } = useContext(GlobalContext)
     return (
         <div>
             <NavBar />
-            {usuario}
-            <button onClick={()=>setUsuario('Home')} >Mudar valor</button>
+
         </div>
     )
 }
