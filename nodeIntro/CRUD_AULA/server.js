@@ -1,6 +1,6 @@
 const express = require("express")
 
-const mysql = require('mysql2')
+const mysql = require('mysql2/promise')
 
 const app = express()
 
@@ -17,9 +17,6 @@ const conectar = mysql.createConnection({
 conectar.connect()
 
 
-app.get('/', (req, res) => {
-    res.send("Ola Mundo!!!")
-})
 
 app.post('/cliente', async (req, res) => {
 
@@ -33,9 +30,13 @@ app.post('/cliente', async (req, res) => {
 
         const [nome_cliente] = await conectar.query(`
             SELECT * FROM cliente WHERE id = ?
-            `, [result.insertId])
+            `, [result.insertId]
+        )
 
-        res.status(201).json((nome_cliente[0]))
+        
+        res.status(201).json({
+
+        })
 
 
     } catch (err) {
@@ -46,6 +47,9 @@ app.post('/cliente', async (req, res) => {
 
 })
 
+app.get('/', (req, res) => {
+    res.send("Ola Mundo!!!")
+})
 
 
 
