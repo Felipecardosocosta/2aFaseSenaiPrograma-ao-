@@ -6,13 +6,13 @@ import Sorveteria from './Sorveteria'
 function Produtos() {
     const { name } = useParams()
 
-    if (name = 'borracharia') {
+    if (name === 'borracharia') {
         return (
             <Borracharia />
         )
 
     }
-    if (name = 'sorveteria') {
+    if (name === 'sorveteria') {
         return (
             <Sorveteria />
         )

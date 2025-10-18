@@ -43,6 +43,7 @@ export const GlobalContextProvider = ({ children }) => {
         { id: 10, nome: 'Energético', valor: 12.00 }
     ])
 
+    const [usuarios, setUsuarios]= useState([])
 
     return (
         <GlobalContext.Provider
@@ -50,7 +51,9 @@ export const GlobalContextProvider = ({ children }) => {
                 {
                     produtosBar,
                     produtosSorveteria,
-                    servicosBorracharia
+                    servicosBorracharia,
+                    usuarios,
+                    setUsuarios
                 }}>
             {children}
         </GlobalContext.Provider>
