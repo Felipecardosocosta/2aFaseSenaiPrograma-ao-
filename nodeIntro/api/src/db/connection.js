@@ -8,7 +8,7 @@ const connection = async ()=>{
     port: 3306,
     database: 'test_api',
     user: 'root',
-    password: "fd260316"
+    password: ""
 })
 
     return  conectar
