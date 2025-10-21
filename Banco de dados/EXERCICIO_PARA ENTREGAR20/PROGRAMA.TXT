@@ -62,9 +62,9 @@ INSERT INTO mensalidade(dt_vencimento,valor,status_pagamento,inscricao_id)
 		('2020-01-10',550 ,'Pago',1),
         ('2020-01-10',540,'Pago',2),
         ('2020-01-10',530 ,'Pago', 3),
-        ('2024-06-10',580 ,'Não Pago' ,4),
-        ('2024-06-10',570 ,'Não Pago' ,5),
-        ('2024-06-10',560 ,'Não Pago' ,6)
+        ('2020-06-10',580 ,'Não Pago' ,4),
+        ('2020-06-10',570 ,'Não Pago' ,5),
+        ('2020-06-10',560 ,'Não Pago' ,6)
         
 ;
 
@@ -82,5 +82,30 @@ GROUP BY mensalidade.status_pagamento;
 
 
 
+
+SELECT aluno.nome, avg(mensalidade.valor) AS 'Media da Mensalidade' FROM aluno 
+JOIN inscricao 
+ON aluno.id_aluno = inscricao.aluno_id
+JOIN mensalidade
+ON mensalidade.inscricao_id = inscricao.id_inscricao
+GROUP BY aluno.nome;
+
+SELECT max(mensalidade.valor) AS 'valor máximo da mensalidade' FROM mensalidade;
+
+SELECT min(mensalidade.valor) AS 'valor minimo da mensalidade' FROM mensalidade;
+
+SELECT min(mensalidade.valor) AS 'valor minimo da mensalidade não paga' FROM mensalidade WHERE mensalidade.status_pagamento = 'Não Pago' ;
+
+
+SELECT nome FROM aluno 
+GROUP BY nome;
+
+
+SELECT sum(mensalidade.valor) AS 'Valor Anterior' FROM mensalidade WHERE dt_vencimento < '2020-06-10';
+
+
+SELECT sum(mensalidade.valor) AS 'Valor Posterior' FROM mensalidade WHERE dt_vencimento > '2020-06-09';
+
+SELECT sum(mensalidade.valor) AS 'SOMATORIO ID 2 ID 5' FROM mensalidade WHERE id_mensalidade >= 2 AND id_mensalidade <=5;
 
 
