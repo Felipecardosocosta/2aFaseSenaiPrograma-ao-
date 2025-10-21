@@ -1,0 +1,86 @@
+CREATE DATABASE escola_xx;
+
+USE escola_xx;
+
+CREATE TABLE aluno(
+id_aluno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100)
+
+);
+CREATE TABLE curso(
+id_curso INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100),
+duracao INT
+);
+
+CREATE TABLE inscricao(
+id_inscricao INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+aluno_id INT,
+dt_inscricao DATE,
+curso_id INT,
+
+FOREIGN KEY (aluno_id)
+REFERENCES aluno (id_aluno),
+
+FOREIGN KEY (curso_id)
+REFERENCES curso (id_curso)
+
+
+);
+
+
+
+CREATE TABLE mensalidade(
+id_mensalidade INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+inscricao_id INT ,
+dt_vencimento DATE,
+valor DECIMAL(8,2),
+status_pagamento ENUM('Pago','Não Pago'),
+FOREIGN KEY (inscricao_id)
+REFERENCES inscricao (id_inscricao)
+
+);
+
+
+INSERT INTO aluno(nome) VALUES('FELIE'),('DARA'),('RAQUEL'),('CECILIA'),('DINALVA');
+
+INSERT INTO curso (nome,duracao) VALUES ('Desemvolvimento de sistema','2200'),('Ciencia de dados','2300'),('Segurança cibernetca','3000'),('UX Design','1500'),('Direito','5000');
+
+INSERT INTO inscricao(aluno_id,dt_inscricao,curso_id) VALUES 
+('4','2020-01-02','4'),
+('3','2020-01-02','3'),
+('2','2020-01-02','2'),
+('4','2020-06-02','4'),
+('3','2020-06-02','3'),
+('2','2020-06-02','2');
+
+INSERT INTO inscricao(dt_inscricao) VALUES 
+('2020-06-02');
+
+INSERT INTO mensalidade(dt_vencimento,valor,status_pagamento,inscricao_id) 
+	VALUES
+		('2020-01-10',550 ,'Pago',1),
+        ('2020-01-10',540,'Pago',2),
+        ('2020-01-10',530 ,'Pago', 3),
+        ('2024-06-10',580 ,'Não Pago' ,4),
+        ('2024-06-10',570 ,'Não Pago' ,5),
+        ('2024-06-10',560 ,'Não Pago' ,6)
+        
+;
+
+
+SELECT aluno.nome, sum(mensalidade.valor) AS 'Mensalidade Total' FROM aluno 
+JOIN inscricao 
+ON aluno.id_aluno = inscricao.aluno_id
+JOIN mensalidade
+ON mensalidade.inscricao_id = inscricao.id_inscricao
+GROUP BY aluno.nome;
+
+SELECT sum(mensalidade.valor) AS 'Não Pago' FROM mensalidade 
+WHERE mensalidade.status_pagamento = 'Não Pago'
+GROUP BY mensalidade.status_pagamento;
+
+
+
+
+
