@@ -1,17 +1,17 @@
 const mysql = require('mysql2/promise')
 
 
-const connection = async ()=>{
-    
-   const conectar = await mysql.createConnection({
-    host: '127.0.0.1',
-    port: 3306,
-    database: 'test_api',
-    user: 'root',
-    password: ""
-})
+const connection = async () => {
 
-    return  conectar
+    const conectar = await mysql.createConnection({
+        host: '127.0.0.1',
+        port: 3306,
+        database: 'test_api',
+        user: 'root',
+        password: "senai"
+    })
+
+    return conectar
 
 }
 
@@ -28,7 +28,7 @@ async function testConection(params) {
     } catch (error) {
         console.log(`erro ao conectar ${error}`)
     }
-    
+
 }
 
 testConection()
