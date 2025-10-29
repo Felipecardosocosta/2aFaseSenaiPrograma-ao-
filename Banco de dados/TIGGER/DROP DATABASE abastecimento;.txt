@@ -28,6 +28,19 @@ REFERENCES posto (id)
 
 INSERT INTO veiculo(placa,litros_abastecidos,posto_id) VALUES ('MEU','1000.01','1');
 
+
+CREATE TABLE pedido(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+data_hora DATETIME,
+tipo_entrega ENUM('Normal','Urgente'),
+preco DECIMAL(8,2),
+quantidade INT,
+valor_total DECIMAL(8,2),
+valor_total_com_desconto DECIMAL(8,2)
+);
+
+
+
 DELIMITER $$
 CREATE TRIGGER estoque_atualizado
 AFTER INSERT ON veiculo 
@@ -42,22 +55,13 @@ $$
 
 
 
-CREATE TABLE pedido(
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-data_hora DATETIME,
-tipo_entrega ENUM('Normal','Urgente'),
-preco DECIMAL(8,2),
-quantidade INT,
-valor_total DECIMAL(8,2),
-valor_total_com_desconto DECIMAL(8,2)
-);
 
 DELIMITER $$
 CREATE TRIGGER inserindo_valores
 BEFORE INSERT ON pedido
 FOR EACH ROW
 BEGIN
-SET new.valor_total = pedido.preco * quantidade;
+SET new.valor_total = new.preco * new.quantidade;
 SET new.valor_total_com_desconto = new.valor_total * 0.9;
 END;
 $$
@@ -72,7 +76,7 @@ VALUES
 ("2025-10-16 19:30:00","Normal","15.00","5.00")
 ;
 
-
+SELECT *FROM pedido;
 
 
 
