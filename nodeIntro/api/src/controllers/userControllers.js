@@ -121,7 +121,7 @@ async function loginUser(req,res) {
         const [result] = await conectado.query('SELECT id, username FROM test WHERE username = ? AND senha = ? ',[userName,senha])
         
         if (result.length ===0) {
-            return res.status(404).json({mensagem: "usuario ou senha incoretos", result})            
+            return res.status(404).json({mensagem: "usuario ou senha incorretos", result})            
         }
 
         const payload= {
@@ -131,7 +131,7 @@ async function loginUser(req,res) {
         }
 
 
-        const token = jwt.sign(payload,secretToken,{expiresIn:'1h'})
+        const token =  jwt.sign(payload,secretToken,{expiresIn:'1h'})
 
         res.status(200).json({mensagem:'Usuario logado', result: result[0], token})
 
