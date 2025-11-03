@@ -1,4 +1,7 @@
+
 const conectarBanco = require('../db/connection')
+
+const jwt = require('jsonwebtoken')
 
 let conectado 
 
@@ -9,6 +12,7 @@ async function conectandoBanco() {
 }
 
 conectandoBanco()
+
 
 
 // adicionar 
@@ -106,12 +110,51 @@ async function mudarDadosUser(req,res) {
 }
 
 
+async function loginUser(req,res) {
+
+    const secretToken = 'testando'
+    const {userName, senha} = req.body
+
+    try {
+        
+
+        const [result] = await conectado.query('SELECT id, username FROM test WHERE username = ? AND senha = ? ',[userName,senha])
+        
+        if (result.length ===0) {
+            return res.status(404).json({mensagem: "usuario ou senha incoretos", result})            
+        }
+
+        const payload= {
+            id: result[0].id,
+            nome: result[0].nome,
+            role: 'user'
+        }
+
+
+        const token = jwt.sign(payload,secretToken,{expiresIn:'1h'})
+
+        res.status(200).json({mensagem:'Usuario logado', result: result[0], token})
+
+
+    } catch (error) {
+
+        console.error(error)
+
+        return res.status(404).json({mensagem:"erro ao tentar acessar o login", result:error})
+        
+    }
+    
+}
+
+
+
 module.exports = {
     adicionarUser,
     deletarUser,
     pesguisarUser,
     pesguisarUser,
     pesguisarUsers,
-    mudarDadosUser
+    mudarDadosUser,
+    loginUser
 
 }
