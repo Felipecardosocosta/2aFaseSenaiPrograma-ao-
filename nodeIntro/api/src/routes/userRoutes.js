@@ -7,7 +7,8 @@ const { adicionarUser,
     pesguisarUsers,
     mudarDadosUser,
     deletarUser,
-    loginUser
+    loginUser,
+    buscarTodosEventos
 } = require('../controllers/userControllers')
 
 router.post('/add', adicionarUser)
@@ -20,6 +21,6 @@ router.put("/mudar/:id", mudarDadosUser)
 
 router.delete("/deletar/:id", deletarUser)
 
-router.get('/login',loginUser)
+router.get('/login',buscarTodosEventos)
 
 module.exports = router

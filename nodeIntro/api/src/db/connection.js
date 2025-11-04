@@ -6,9 +6,9 @@ const connection = async () => {
     const conectar = await mysql.createConnection({
         host: '127.0.0.1',
         port: 3306,
-        database: 'test_api',
+        database: 'mini_cia_e_trilhas',
         user: 'root',
-        password: "senai"
+        password: "fd260316"
     })
 
     return conectar
