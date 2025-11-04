@@ -1,0 +1,159 @@
+CREATE DATABASE mini_cia_e_trilhas;
+
+USE mini_cia_e_trilhas;
+
+CREATE TABLE usuario(
+id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(200) UNIQUE NOT NULL,
+cpf BIGINT(11) UNIQUE NOT NULL,
+dt_nascimento DATE NOT NULL,
+sexo ENUM('Masculino','Feminino') NOT NULL,
+num_celular BIGINT(11) UNIQUE NOT NULL,
+email VARCHAR(200) NOT NULL,
+nome_usuario VARCHAR(200) UNIQUE NOT NULL,
+senha VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE trilha(
+id_trilha INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(200),
+ponto_partida VARCHAR(200),
+ponto_chegada VARCHAR(200),
+distancia DECIMAL(10,2),
+tempo TIME,
+relevo VARCHAR(200),
+elevacao INT,
+dificuldade INT
+);
+
+CREATE TABLE evento(
+id_evento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+data_evento DATE,
+horario TIME,
+ponto_de_encontro VARCHAR(200),
+vagas INT,
+trilha_id INT,
+FOREIGN KEY (trilha_id)
+REFERENCES trilha (id_trilha)
+);
+
+CREATE TABLE participante(
+id_participante INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+usuario_id INT,
+evento_id INT,
+descricao ENUM('PARTICIPANTE', 'CRIADOR'),
+FOREIGN KEY (usuario_id)
+REFERENCES usuario (id_usuario),
+FOREIGN KEY (evento_id)
+REFERENCES evento (id_evento)
+);
+
+-- SELECIONE O BANCO
+USE mini_cia_e_trilhas;
+
+-- USUÁRIOS
+INSERT INTO usuario (nome, cpf, dt_nascimento, sexo, num_celular, email, nome_usuario, senha)
+VALUES
+('Felipe Cardoso', 12345678901, '1996-05-10', 'Masculino', 48999030563, 'felipe@gmail.com', 'felipecosta', '123456'),
+('Ana Souza', 23456789012, '1998-08-15', 'Feminino', 48998211234, 'ana.souza@gmail.com', 'anasz', 'abc123'),
+('Marcos Lima', 34567890123, '1990-12-22', 'Masculino', 48997112233, 'marcos.lima@gmail.com', 'marc_lima', 'senha321'),
+('Julia Fernandes', 45678901234, '1999-03-30', 'Feminino', 48998334455, 'julia.f@gmail.com', 'juliaf', 'senha123'),
+('Bruno Rocha', 56789012345, '1988-07-07', 'Masculino', 48997455667, 'bruno.rocha@gmail.com', 'brunor', 'rocha88'),
+('Larissa Campos', 67890123456, '1995-11-11', 'Feminino', 48998566778, 'larissa.campos@gmail.com', 'lari_campos', 'larissa95'),
+('Gabriel Santos', 78901234567, '2000-04-25', 'Masculino', 48999677889, 'gabriel.santos@gmail.com', 'gab_santos', 'gab2000'),
+('Camila Oliveira', 89012345678, '1997-10-02', 'Feminino', 48998788990, 'camila.oliveira@gmail.com', 'cam_oliveira', 'cami10');
+
+-- TRILHAS
+INSERT INTO trilha (nome, ponto_partida, ponto_chegada, distancia, tempo, relevo, elevacao, dificuldade)
+VALUES
+('Trilha da Lagoinha do Leste', 'Pântano do Sul', 'Lagoinha do Leste', 3.5, '01:30:00', 'Misto', 350, 4),
+('Trilha do Gravatá', 'Praia Mole', 'Praia do Gravatá', 2.0, '00:50:00', 'Costeira', 150, 2),
+('Trilha da Costa da Lagoa', 'Canto dos Araçás', 'Costa da Lagoa', 6.0, '02:30:00', 'Mata Atlântica', 420, 5),
+('Trilha do Saquinho', 'Praia da Solidão', 'Praia do Saquinho', 2.3, '01:10:00', 'Costeira', 200, 3),
+('Trilha do Morro das Aranhas', 'Praia do Santinho', 'Topo do Morro', 1.8, '00:45:00', 'Pedregoso', 250, 2),
+('Trilha do Morro da Coroa', 'Praia do Rosa', 'Topo da Coroa', 2.5, '01:20:00', 'Montanhosa', 310, 3),
+('Trilha das Furnas', 'Armação', 'Furnas', 4.2, '01:40:00', 'Costeira', 280, 3),
+('Trilha da Boa Vista', 'Ingleses', 'Topo do Morro Boa Vista', 3.8, '01:50:00', 'Florestal', 400, 4);
+
+-- EVENTOS
+INSERT INTO evento (data_evento, horario, ponto_de_encontro, vagas, trilha_id)
+VALUES
+('2025-11-10', '08:00:00', 'Pântano do Sul - estacionamento principal', 10, 1),
+('2025-11-15', '09:00:00', 'Praia Mole - entrada da trilha', 12, 2),
+('2025-11-20', '07:30:00', 'Canto dos Araçás - início da trilha', 8, 3),
+('2025-11-22', '08:30:00', 'Praia da Solidão - início da trilha', 10, 4),
+('2025-12-01', '07:45:00', 'Santinho - mirante', 6, 5),
+('2025-12-05', '09:15:00', 'Armação - estacionamento', 15, 7),
+('2025-12-10', '08:00:00', 'Ingleses - início da subida', 10, 8);
+
+-- PARTICIPANTES
+INSERT INTO participante (usuario_id, evento_id, descricao)
+VALUES
+-- Felipe criou e participa da trilha da Lagoinha
+(1, 1, 'CRIADOR'),
+(2, 1, 'PARTICIPANTE'),
+(3, 1, 'PARTICIPANTE'),
+
+-- Ana criou a trilha do Gravatá
+(2, 2, 'CRIADOR'),
+(4, 2, 'PARTICIPANTE'),
+(5, 2, 'PARTICIPANTE'),
+
+-- Marcos criou a trilha da Costa da Lagoa
+(3, 3, 'CRIADOR'),
+(6, 3, 'PARTICIPANTE'),
+(7, 3, 'PARTICIPANTE'),
+
+-- Julia criou a trilha do Saquinho
+(4, 4, 'CRIADOR'),
+(1, 4, 'PARTICIPANTE'),
+
+-- Bruno criou a trilha do Morro das Aranhas
+(5, 5, 'CRIADOR'),
+(2, 5, 'PARTICIPANTE'),
+
+-- Larissa criou a trilha das Furnas
+(6, 6, 'CRIADOR'),
+(3, 6, 'PARTICIPANTE'),
+(8, 6, 'PARTICIPANTE'),
+
+-- Camila criou a trilha da Boa Vista
+(8, 7, 'CRIADOR'),
+(1, 7, 'PARTICIPANTE'),
+(5, 7, 'PARTICIPANTE');
+ ;
+
+
+SELECT * FROM participante
+JOIN evento
+ON evento.id_evento = participante.evento_id
+JOIN usuario 
+ON participante.usuario_id = usuario.id_usuario
+GROUP BY evento.id_evento;
+
+
+SELECT 
+  evento.id_evento,
+  usuario.nome AS participante,
+  usuario.id_usuario,
+  evento.data_evento AS 'data',
+  evento.horario AS horario,
+  evento.ponto_de_encontro AS pontoEncontro,
+  evento.vagas AS vagas,
+  trilha.nome AS nomeTrilha,
+  trilha.ponto_partida,
+  trilha.ponto_chegada,
+  trilha.dificuldade,
+  trilha.distancia,
+  participante.descricao
+FROM participante
+JOIN evento ON evento.id_evento = participante.evento_id
+JOIN usuario ON participante.usuario_id = usuario.id_usuario
+JOIN trilha 
+ON trilha.id_trilha = evento.trilha_id
+ORDER BY evento.id_evento;
+
+
+
+
+

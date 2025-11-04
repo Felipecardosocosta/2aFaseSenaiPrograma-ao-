@@ -8,7 +8,7 @@ const connection = async () => {
         port: 3306,
         database: 'mini_cia_e_trilhas',
         user: 'root',
-        password: "fd260316"
+        password: "0"
     })
 
     return conectar
