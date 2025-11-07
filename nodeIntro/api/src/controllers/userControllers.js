@@ -13,7 +13,7 @@ async function conectandoBanco() {
 
 conectandoBanco()
 
-
+// axios.get("/tese",{email:email,senha:senha},{headers:{"Authorization":token}})
 
 // adicionar 
 
