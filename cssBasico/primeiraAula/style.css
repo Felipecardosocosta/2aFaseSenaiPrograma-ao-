@@ -1,0 +1,46 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: gray;
+}
+
+.cont {
+    height: 100%;
+    background-color: brown;
+
+}
+
+.top {
+    height: 20%;
+    background-color: blueviolet;
+}
+
+.mid {
+    height: 65%;
+    background-color: chocolate;
+    display: flex;
+   
+}
+
+#mid_left {
+    height: 100%;
+    width: 40%;
+    background-color: rebeccapurple;
+}
+
+#mid_right {
+    height: 100%;
+    width: 60%;
+    background-color: deeppink;
+}
+
+
+
+.baixo {
+    height: 15%;
+    background-color: aquamarine;
+}
