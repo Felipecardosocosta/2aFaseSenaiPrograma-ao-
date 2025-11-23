@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import pesguisarPokemons from '../../server/pesguisarPokemons'
+import ProgressBar, { PulsingLoader, SquareDotsLoader } from '../../components/ProgressBar'
 
 function Pokemons() {
 
@@ -36,6 +37,19 @@ function Pokemons() {
     return (
         <div>
             <ol>
+                <p>
+                <ProgressBar/>
+
+                </p>
+                <p>
+                <PulsingLoader/>
+
+                </p>
+
+                <p>
+                    <SquareDotsLoader/>
+                </p>
+
 
                 {!erro ?
                     carregando ? <p> Carregando...</p> :
