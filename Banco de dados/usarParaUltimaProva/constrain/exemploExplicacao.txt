@@ -1,0 +1,82 @@
+⭐ RESUMO DAS CONSTRAINTS NO MYSQL
+🔹 1. PRIMARY KEY
+
+O que faz: Identifica de forma única cada linha da tabela.
+
+Como funciona: Nenhum valor pode se repetir e não pode ser NULL.
+
+Exemplo:
+
+id INT PRIMARY KEY
+
+🔹 2. FOREIGN KEY
+
+O que faz: Cria relação entre tabelas.
+
+Como funciona: O valor da coluna deve existir na coluna referenciada de outra tabela.
+
+Serve pra: Garantir integridade referencial.
+
+Exemplo:
+
+FOREIGN KEY (id_cliente) REFERENCES clientes(id)
+
+🔹 3. UNIQUE
+
+O que faz: Impede valores duplicados.
+
+Como funciona: Valores podem ser NULL, mas se tiver mais de um NULL, depende da engine (InnoDB aceita vários).
+
+Exemplo:
+
+email VARCHAR(100) UNIQUE
+
+🔹 4. CHECK
+
+O que faz: Define regras lógicas que o valor deve seguir.
+
+Como funciona: O MySQL validará o valor inserido e rejeitará o que quebrar a regra.
+
+Exemplo:
+
+idade INT CHECK (idade >= 18)
+
+🔹 5. DEFAULT
+
+O que faz: Define um valor padrão caso nenhum seja informado.
+
+Como funciona: Se você não colocar nada na coluna, o valor definido como DEFAULT entra automaticamente.
+
+Exemplo:
+
+status VARCHAR(20) DEFAULT 'ativo'
+
+🔹 6. NOT NULL
+
+O que faz: Impede valores nulos.
+
+Como funciona: Obriga preencher a coluna sempre.
+
+Exemplo:
+
+nome VARCHAR(50) NOT NULL
+
+🔹 7. ENUM (não é constraint, mas age como uma)
+
+O que faz: Limita valores possíveis em uma coluna.
+
+Como funciona: A coluna só aceita valores que você listar.
+
+Exemplo:
+
+nivel ENUM('iniciante', 'intermediario', 'avancado')
+
+🔹 8. AUTO_INCREMENT (também não é constraint, mas é usada junto da PRIMARY KEY)
+
+O que faz: Incrementa automaticamente números sequenciais.
+
+Como funciona: Cada novo registro recebe o próximo número.
+
+Exemplo:
+
+id INT PRIMARY KEY AUTO_INCREMENT

@@ -40,7 +40,7 @@ valor_total_com_desconto DECIMAL(8,2)
 );
 
 
-
+depois
 DELIMITER $$
 CREATE TRIGGER estoque_atualizado
 AFTER INSERT ON veiculo 
@@ -55,7 +55,7 @@ $$
 
 
 
-
+// antes
 DELIMITER $$
 CREATE TRIGGER inserindo_valores
 BEFORE INSERT ON pedido
